@@ -12,10 +12,10 @@ import com.google.firebase.ktx.Firebase
 
 class DetailActivity : AppCompatActivity() {
 
-    val binding by lazy {
+    private val binding by lazy {
         ActivityDetailBinding.inflate(layoutInflater)
     }
-    var productModel = ProductModel()
+    private var productModel = ProductModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -23,7 +23,7 @@ class DetailActivity : AppCompatActivity() {
         val productId = intent.getStringExtra("PRODUCT_ID")
 
         if(productId != null) {
-            Firebase.firestore.collection("Products").document(productId!!).get()
+            Firebase.firestore.collection("Products").document(productId).get()
                 .addOnSuccessListener {
 
                     productModel = it.toObject<ProductModel>()!!
