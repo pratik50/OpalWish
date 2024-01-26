@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".DashboardFragment">
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <!-- T-Shirt -->
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_12sdp">
+
+                <ImageView
+                    android:id="@+id/tshirt"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_60sdp"
+                    android:background="@drawable/icon_border"
+                    android:padding="@dimen/_8sdp"
+                    android:src="@drawable/tshirt_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tshirt"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:text="T-Shirt" />
+            </RelativeLayout>
+
+            <!-- Shirt -->
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_12sdp">
+
+                <ImageView
+                    android:id="@+id/shirt"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_60sdp"
+                    android:background="@drawable/icon_border"
+                    android:padding="@dimen/_8sdp"
+                    android:src="@drawable/shirt_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/shirt"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:text="Shirt" />
+            </RelativeLayout>
+
+            <!-- Mens Bottom -->
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_12sdp">
+
+                <ImageView
+                    android:id="@+id/mensBottom"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_60sdp"
+                    android:background="@drawable/icon_border"
+                    android:padding="@dimen/_8sdp"
+                    android:src="@drawable/mens_bottom_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/mensBottom"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:text="Mens\nBottom" />
+            </RelativeLayout>
+
+            <!-- Dress -->
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_12sdp">
+
+                <ImageView
+                    android:id="@+id/dress"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_60sdp"
+                    android:background="@drawable/icon_border"
+                    android:padding="@dimen/_8sdp"
+                    android:src="@drawable/dress_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/dress"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:text="Dress" />
+            </RelativeLayout>
+
+            <!-- Tops -->
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_12sdp">
+
+                <ImageView
+                    android:id="@+id/tops"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_60sdp"
+                    android:background="@drawable/icon_border"
+                    android:padding="@dimen/_8sdp"
+                    android:src="@drawable/tops_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tops"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:text="Tops" />
+            </RelativeLayout>
+
+            <!-- Womens Bottom -->
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_12sdp">
+
+                <ImageView
+                    android:id="@+id/womensBottom"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_60sdp"
+                    android:background="@drawable/icon_border"
+                    android:padding="@dimen/_8sdp"
+                    android:src="@drawable/womens_bottom_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/womensBottom"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:text="Womens\nBottom" />
+            </RelativeLayout>
+
+            <!-- Baby Dress -->
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_12sdp">
+
+                <ImageView
+                    android:id="@+id/baby_dress"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_60sdp"
+                    android:background="@drawable/icon_border"
+                    android:padding="@dimen/_8sdp"
+                    android:src="@drawable/baby_dress_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/baby_dress"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:text="Baby Dress" />
+            </RelativeLayout>
+
+            <!-- Winter -->
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_12sdp">
+
+                <ImageView
+                    android:id="@+id/winter"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_60sdp"
+                    android:background="@drawable/icon_border"
+                    android:padding="@dimen/_8sdp"
+                    android:src="@drawable/winters_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/winter"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:text="Winters\nCollection" />
+            </RelativeLayout>
+
+            <!-- Caps -->
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_12sdp">
+
+                <ImageView
+                    android:id="@+id/caps"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_60sdp"
+                    android:background="@drawable/icon_border"
+                    android:padding="@dimen/_8sdp"
+                    android:src="@drawable/caps_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/caps"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:text="Caps\nCollection" />
+            </RelativeLayout>
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/main_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:itemCount="25"
+        tools:listitem="@layout/rv_item" />
+
+</LinearLayout>

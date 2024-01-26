@@ -1,0 +1,9 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.OpalWish" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <item name="colorPrimary">#F68B8B</item>
+    </style>
+
+    <style name="Theme.OpalWish" parent="Base.Theme.OpalWish" />
+</resources>

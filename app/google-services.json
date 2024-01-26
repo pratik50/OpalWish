@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "311799315683",
+    "project_id": "opalwish-4b721",
+    "storage_bucket": "opalwish-4b721.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:311799315683:android:3466c2a1fab0d9143f19d6",
+        "android_client_info": {
+          "package_name": "com.example.opalwish"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAW2S2dnrbVbQBXZvwV3H27hWJMzGu6uTo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
