@@ -23,11 +23,11 @@
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_34sdp"
                 android:layout_marginStart="@dimen/_12sdp"
-                android:layout_marginTop="@dimen/_24sdp"
+                android:layout_marginTop="@dimen/_8sdp"
                 android:layout_marginEnd="@dimen/_12sdp"
                 android:layout_marginBottom="@dimen/_18sdp"
                 android:background="@drawable/border_design"
-                android:queryHint="Search here.."
+                android:queryHint="Search by keyword.."
                 android:queryBackground="@null"
                 android:iconifiedByDefault="false"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -39,7 +39,7 @@
                 android:id="@+id/bell_icon"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_marginTop="@dimen/_24sdp"
+                android:layout_marginTop="@dimen/_8sdp"
                 android:layout_marginEnd="@dimen/_12sdp"
                 android:layout_marginBottom="@dimen/_18sdp"
                 android:background="@drawable/bell_notification"
@@ -82,12 +82,18 @@
 
     </LinearLayout>
 
+    <View
+        android:id="@+id/divider1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/_2sdp"
+        android:layout_marginBottom="@dimen/_2sdp"
+        android:background="?android:attr/dividerVertical" />
+
 
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_12sdp"
-        android:layout_marginEnd="@dimen/_10sdp"
         android:scrollbars="none">
 
         <LinearLayout
@@ -99,6 +105,7 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_12sdp"
                 android:layout_marginEnd="@dimen/_12sdp"
                 android:layout_marginTop="@dimen/_12sdp"
                 >
@@ -212,7 +219,7 @@
                     android:text="Tops" />
             </RelativeLayout>
 
-            <!-- Womens Bottom -->
+            <!-- Women's Bottom -->
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -285,6 +292,7 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_12sdp"
                 android:layout_margin="@dimen/_12sdp">
 
                 <ImageView
@@ -306,6 +314,13 @@
 
         </LinearLayout>
     </HorizontalScrollView>
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:background="?android:attr/dividerVertical" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/main_rv"
