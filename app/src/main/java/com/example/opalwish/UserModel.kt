@@ -1,10 +1,10 @@
 package com.example.opalwish
 
 class UserModel {
-    private var fistName: String = ""
-    private var lastName: String = ""
-    private var password: String = ""
-    private var email: String = ""
+     var fistName: String = ""
+     var lastName: String = ""
+     var password: String = ""
+     var email: String = ""
 
     constructor(fistName: String, lastName: String, password: String, email: String) {
         this.fistName = fistName

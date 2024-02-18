@@ -5,7 +5,54 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#FDFDFD"
     tools:context=".DashboardFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_12sdp">
+
+        <ImageView
+            android:id="@+id/user_icon"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:src="@drawable/user_icon"
+            android:layout_marginStart="@dimen/_12sdp" />
+
+        <LinearLayout
+            android:id="@+id/greetingsLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/user_icon"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/hello_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hello,"
+                android:textStyle="normal"/>
+
+            <TextView
+                android:id="@+id/shop_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Let's shop!"
+                android:textStyle="bold"
+                android:layout_below="@id/hello_text"/>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/bell_icon"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:background="@drawable/bell_notification"/>
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,7 +70,6 @@
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_34sdp"
                 android:layout_marginStart="@dimen/_12sdp"
-                android:layout_marginTop="@dimen/_8sdp"
                 android:layout_marginEnd="@dimen/_12sdp"
                 android:layout_marginBottom="@dimen/_18sdp"
                 android:background="@drawable/border_design"
@@ -31,21 +77,8 @@
                 android:queryBackground="@null"
                 android:iconifiedByDefault="false"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/bell_icon"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <View
-                android:id="@+id/bell_icon"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginTop="@dimen/_8sdp"
-                android:layout_marginEnd="@dimen/_12sdp"
-                android:layout_marginBottom="@dimen/_18sdp"
-                android:background="@drawable/bell_notification"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/search_bar"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -91,9 +124,10 @@
         android:background="?android:attr/dividerVertical" />
 
 
+
     <HorizontalScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/_99sdp"
         android:scrollbars="none">
 
         <LinearLayout
@@ -170,7 +204,7 @@
                     android:layout_below="@id/mensBottom"
                     android:layout_centerHorizontal="true"
                     android:gravity="center"
-                    android:text="Mens\nBottom" />
+                    android:text="Mens Bottom" />
             </RelativeLayout>
 
             <!-- Dress -->
@@ -231,6 +265,7 @@
                     android:layout_height="@dimen/_60sdp"
                     android:background="@drawable/icon_border"
                     android:padding="@dimen/_8sdp"
+                    android:layout_centerHorizontal="true"
                     android:src="@drawable/womens_bottom_icon" />
 
                 <TextView
@@ -239,7 +274,7 @@
                     android:layout_below="@id/womensBottom"
                     android:layout_centerHorizontal="true"
                     android:gravity="center"
-                    android:text="Womens\nBottom" />
+                    android:text="Women Bottom" />
             </RelativeLayout>
 
             <!-- Baby Dress -->
@@ -285,7 +320,7 @@
                     android:layout_below="@id/winter"
                     android:layout_centerHorizontal="true"
                     android:gravity="center"
-                    android:text="Winters\nCollection" />
+                    android:text="Winters Wear" />
             </RelativeLayout>
 
             <!-- Caps -->
@@ -301,6 +336,7 @@
                     android:layout_height="@dimen/_60sdp"
                     android:background="@drawable/icon_border"
                     android:padding="@dimen/_8sdp"
+                    android:layout_centerHorizontal="true"
                     android:src="@drawable/caps_icon" />
 
                 <TextView
@@ -309,7 +345,7 @@
                     android:layout_below="@id/caps"
                     android:layout_centerHorizontal="true"
                     android:gravity="center"
-                    android:text="Caps\nCollection" />
+                    android:text="Caps" />
             </RelativeLayout>
 
         </LinearLayout>

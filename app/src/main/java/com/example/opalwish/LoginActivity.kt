@@ -103,7 +103,7 @@ class LoginActivity : AppCompatActivity() {
                                     startActivity(
                                         Intent(
                                             this@LoginActivity,
-                                            HomeActivity::class.java
+                                            MainActivity::class.java
                                         )
                                     )
                                     finish()

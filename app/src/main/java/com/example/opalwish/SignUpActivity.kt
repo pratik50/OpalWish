@@ -54,17 +54,17 @@ class SignUpActivity : AppCompatActivity() {
 
                     Firebase.database.reference.child("Users").child(it.result.user!!.uid)
                         .setValue(userModel).addOnCompleteListener {
+                            dialog.show()
                             done.setOnClickListener {
                                 dialog.dismiss()
                                 startActivity(
                                     Intent(
                                         this@SignUpActivity,
-                                        HomeActivity::class.java
+                                        MainActivity::class.java
                                     )
                                 )
                                 finish()
                             }
-                            dialog.show()
                         }
                         .addOnFailureListener {
                             Toast.makeText(

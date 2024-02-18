@@ -13,27 +13,14 @@ class MainActivity : AppCompatActivity() {
         ActivityMainBinding.inflate(layoutInflater)
     }
 
-    private val auth = Firebase.auth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-    }
 
-    override fun onStart() {
-        super.onStart()
-
-        runOnUiThread{
-            binding.getstartButton.setOnClickListener {
-                if (auth.currentUser == null) {
-                    // User is not authenticated, so navigate to the sign-up/login activity
-                    startActivity(Intent(this@MainActivity, SignUpActivity::class.java))
-                } else {
-                    // User is authenticated, so navigate to the home activity
-                    startActivity(Intent(this@MainActivity, HomeActivity::class.java))
-                }
-                finish()
-            }
+        binding.getstartButton.setOnClickListener {
+            startActivity(Intent(this@MainActivity,HomeActivity::class.java))
+            finish()
         }
     }
 }

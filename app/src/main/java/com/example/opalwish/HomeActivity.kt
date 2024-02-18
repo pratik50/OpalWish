@@ -1,6 +1,7 @@
 package com.example.opalwish
 
 import android.os.Bundle
+import android.view.WindowManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -14,8 +15,8 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityHomeBinding.inflate(layoutInflater)
+
         setContentView(binding.root)
 
         val navView: BottomNavigationView = binding.navView

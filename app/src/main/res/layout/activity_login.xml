@@ -9,8 +9,8 @@
 
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/_153sdp"
+        android:layout_height="@dimen/_117sdp"
         android:src="@drawable/top_ellipse"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -157,7 +157,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_22sdp"
-        android:layout_marginTop="@dimen/_96sdp"
+        android:layout_marginTop="@dimen/_70sdp"
         android:text="Login"
         android:textSize="@dimen/_30sdp"
         app:layout_constraintStart_toStartOf="parent"

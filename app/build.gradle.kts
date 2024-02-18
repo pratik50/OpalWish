@@ -59,6 +59,7 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
     implementation (libs.sdp.android)
     implementation (libs.ssp.android)
+    implementation ("me.relex:circleindicator:2.1.6")
     implementation("io.coil-kt:coil:2.5.0")
 
 }
