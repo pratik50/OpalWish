@@ -1,15 +1,16 @@
-package com.example.opalwish
+package com.example.opalwish.ui
 
 import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Window
 import android.widget.Button
 import android.widget.Toast
-import com.example.opalwish.databinding.ActivitySignUpBinding
+import androidx.appcompat.app.AppCompatActivity
+import com.example.opalwish.R
+import com.example.opalwish.data.UserModel
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -17,7 +18,7 @@ import com.google.firebase.ktx.Firebase
 class SignUpActivity : AppCompatActivity() {
 
     private val binding by lazy {
-        ActivitySignUpBinding.inflate(layoutInflater)
+        com.example.opalwish.databinding.ActivitySignUpBinding.inflate(layoutInflater)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +35,7 @@ class SignUpActivity : AppCompatActivity() {
 
         //Login page forward
         binding.txtLogin.setOnClickListener {
-            startActivity(Intent(this@SignUpActivity,LoginActivity::class.java))
+            startActivity(Intent(this@SignUpActivity, LoginActivity::class.java))
             finish()
         }
         //Login Success listener with nested "popUp window"

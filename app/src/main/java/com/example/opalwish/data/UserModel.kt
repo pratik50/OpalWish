@@ -1,4 +1,4 @@
-package com.example.opalwish
+package com.example.opalwish.data
 
 class UserModel {
      var fistName: String = ""

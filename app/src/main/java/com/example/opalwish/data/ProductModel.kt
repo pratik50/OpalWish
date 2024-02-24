@@ -1,4 +1,4 @@
-package com.example.opalwish
+package com.example.opalwish.data
 
 data class ProductModel(
     var id : String?=null,

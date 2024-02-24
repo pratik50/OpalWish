@@ -1,4 +1,4 @@
-package com.example.opalwish
+package com.example.opalwish.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,6 +8,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.opalwish.R
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 

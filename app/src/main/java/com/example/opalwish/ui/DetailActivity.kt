@@ -1,11 +1,11 @@
-package com.example.opalwish
+package com.example.opalwish.ui
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import coil.load
-import com.example.opalwish.databinding.ActivityDetailBinding
+import com.example.opalwish.data.ProductModel
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
@@ -13,7 +13,7 @@ import com.google.firebase.ktx.Firebase
 class DetailActivity : AppCompatActivity() {
 
     private val binding by lazy {
-        ActivityDetailBinding.inflate(layoutInflater)
+        com.example.opalwish.databinding.ActivityDetailBinding.inflate(layoutInflater)
     }
     private var productModel = ProductModel()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,7 +36,7 @@ class DetailActivity : AppCompatActivity() {
         }
 
         binding.buyNow.setOnClickListener {
-            startActivity(Intent(this@DetailActivity,ShippingActivity::class.java))
+            startActivity(Intent(this@DetailActivity, ShippingActivity::class.java))
         }
     }
 }

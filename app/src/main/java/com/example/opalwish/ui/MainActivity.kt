@@ -1,16 +1,13 @@
-package com.example.opalwish
+package com.example.opalwish.ui
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.opalwish.databinding.ActivityMainBinding
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
     private val binding by lazy {
-        ActivityMainBinding.inflate(layoutInflater)
+        com.example.opalwish.databinding.ActivityMainBinding.inflate(layoutInflater)
     }
 
 
@@ -19,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.getstartButton.setOnClickListener {
-            startActivity(Intent(this@MainActivity,HomeActivity::class.java))
+            startActivity(Intent(this@MainActivity, HomeActivity::class.java))
             finish()
         }
     }

@@ -1,9 +1,10 @@
-package com.example.opalwish
+package com.example.opalwish.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.opalwish.databinding.ActivityProductCategoryBinding
+import com.example.opalwish.adapters.ProductAdapter
+import com.example.opalwish.data.ProductModel
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
@@ -11,7 +12,7 @@ import com.google.firebase.ktx.Firebase
 class ProductCategoryActivity : AppCompatActivity() {
 
     val binding by lazy {
-        ActivityProductCategoryBinding.inflate(layoutInflater)
+        com.example.opalwish.databinding.ActivityProductCategoryBinding.inflate(layoutInflater)
     }
     private lateinit var adapter: ProductAdapter
     private lateinit var productList: ArrayList<ProductModel>

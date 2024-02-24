@@ -3,6 +3,10 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
     id("com.google.gms.google-services")
+    id("kotlin-parcelize")
+    id ("androidx.navigation.safeargs.kotlin")
+    kotlin("kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -59,7 +63,36 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
     implementation (libs.sdp.android)
     implementation (libs.ssp.android)
-    implementation ("me.relex:circleindicator:2.1.6")
     implementation("io.coil-kt:coil:2.5.0")
 
+    //viewpager2 indicator
+    implementation ("me.relex:circleindicator:2.1.6")
+
+    //Navigation component
+    val nav_version = "2.5.2"
+    implementation ("androidx.navigation:navigation-fragment-ktx:$nav_version")
+    implementation ("androidx.navigation:navigation-ui-ktx:$nav_version")
+
+    //loading button
+    implementation("com.github.leandroborgesferreira:loading-button-android:2.3.0")
+
+    //Glide
+    implementation ("com.github.bumptech.glide:glide:4.13.0")
+
+    //circular image
+    implementation ("de.hdodenhof:circleimageview:3.1.0")
+
+    //Android Ktx
+    implementation ("androidx.navigation:navigation-fragment-ktx:2.6.0")
+
+    //Coroutines with firebase
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.7.3")
+
+    implementation("com.google.dagger:hilt-android:2.44")
+    kapt("com.google.dagger:hilt-android-compiler:2.44")
+
+}
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }

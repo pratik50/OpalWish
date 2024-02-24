@@ -1,7 +1,8 @@
-package com.example.opalwish
+package com.example.opalwish.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.example.opalwish.R
 
 class ShippingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

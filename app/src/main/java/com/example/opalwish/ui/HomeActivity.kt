@@ -1,21 +1,19 @@
-package com.example.opalwish
+package com.example.opalwish.ui
 
 import android.os.Bundle
-import android.view.WindowManager
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
-import com.example.opalwish.databinding.ActivityHomeBinding
+import com.example.opalwish.R
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityHomeBinding
+    private lateinit var binding: com.example.opalwish.databinding.ActivityHomeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityHomeBinding.inflate(layoutInflater)
+        binding = com.example.opalwish.databinding.ActivityHomeBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
 

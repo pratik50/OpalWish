@@ -1,4 +1,4 @@
-package com.example.opalwish
+package com.example.opalwish.ui
 
 import android.app.Dialog
 import android.content.Intent
@@ -15,7 +15,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import com.example.opalwish.databinding.ActivityLoginBinding
+import com.example.opalwish.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -23,7 +23,7 @@ import com.google.firebase.ktx.Firebase
 class LoginActivity : AppCompatActivity() {
 
     private val binding by lazy {
-        ActivityLoginBinding.inflate(layoutInflater)
+        com.example.opalwish.databinding.ActivityLoginBinding.inflate(layoutInflater)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +32,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.txtSignup.setOnClickListener {
-            startActivity(Intent(this@LoginActivity,SignUpActivity::class.java))
+            startActivity(Intent(this@LoginActivity, SignUpActivity::class.java))
             finish()
         }
 
@@ -58,7 +58,11 @@ class LoginActivity : AppCompatActivity() {
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {
                                 // Password reset email sent successfully
-                                Toast.makeText(applicationContext, "Password reset email sent. Check your inbox.", Toast.LENGTH_LONG).show()
+                                Toast.makeText(
+                                    applicationContext,
+                                    "Password reset email sent. Check your inbox.",
+                                    Toast.LENGTH_LONG
+                                ).show()
                                 emailEditText.visibility = View.GONE
                                 verify.visibility = View.GONE
                                 pass_text.visibility = View.GONE
@@ -70,11 +74,19 @@ class LoginActivity : AppCompatActivity() {
                                 },5000)
                             } else {
                                 // If the email is not registered or other issues
-                                Toast.makeText(applicationContext, "Failed to send password reset email. Check your email address.", Toast.LENGTH_LONG).show()
+                                Toast.makeText(
+                                    applicationContext,
+                                    "Failed to send password reset email. Check your email address.",
+                                    Toast.LENGTH_LONG
+                                ).show()
                             }
                         }
                 } else {
-                    Toast.makeText(applicationContext, "Enter your email address first.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        applicationContext,
+                        "Enter your email address first.",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         }

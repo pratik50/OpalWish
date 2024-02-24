@@ -7,24 +7,24 @@
 
     <fragment
         android:id="@+id/cartFragment"
-        android:name="com.example.opalwish.CartFragment"
+        android:name="com.example.opalwish.ui.CartFragment"
         android:label="CartFragment"
         tools:layout="@layout/fragment_cart"
         />
     <fragment
         android:id="@+id/wishListFragment"
-        android:name="com.example.opalwish.WishListFragment"
+        android:name="com.example.opalwish.ui.WishListFragment"
         android:label="WishListFragment"
         tools:layout="@layout/fragment_wish_list"
         />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.opalwish.ProfileFragment"
+        android:name="com.example.opalwish.ui.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/dashboardFragment"
-        android:name="com.example.opalwish.DashboardFragment"
+        android:name="com.example.opalwish.ui.DashboardFragment"
         android:label="DashboardFragment"
         tools:layout="@layout/fragment_dashboard"
         />

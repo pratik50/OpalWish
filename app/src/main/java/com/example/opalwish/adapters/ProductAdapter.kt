@@ -1,4 +1,4 @@
-package com.example.opalwish
+package com.example.opalwish.adapters
 
 import android.content.Context
 import android.content.Intent
@@ -6,7 +6,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.example.opalwish.data.ProductModel
+import com.example.opalwish.R
 import com.example.opalwish.databinding.RvItemBinding
+import com.example.opalwish.ui.DetailActivity
 
 class ProductAdapter(var context: Context, var productList: ArrayList<ProductModel>) :
     RecyclerView.Adapter<ProductAdapter.ViewHolder>() {

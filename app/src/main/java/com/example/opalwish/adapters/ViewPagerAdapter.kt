@@ -1,4 +1,4 @@
-package com.example.opalwish
+package com.example.opalwish.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.opalwish.R
 
 class ViewPagerAdapter(private var title: List<String>, private var detail: List<String>, private var image: List<Int>): RecyclerView.Adapter<ViewPagerAdapter.Pager2ViewHolder>() {
 
@@ -17,11 +18,11 @@ class ViewPagerAdapter(private var title: List<String>, private var detail: List
 
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewPagerAdapter.Pager2ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Pager2ViewHolder {
         return Pager2ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.onboard_item,parent,false))
     }
 
-    override fun onBindViewHolder(holder: ViewPagerAdapter.Pager2ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: Pager2ViewHolder, position: Int) {
         holder.itemTitle.text = title[position]
         holder.itemDetail.text = detail[position]
         holder.itemImage.setImageResource(image[position])
