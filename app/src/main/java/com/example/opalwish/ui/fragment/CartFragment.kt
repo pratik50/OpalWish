@@ -1,4 +1,4 @@
-package com.example.opalwish.ui
+package com.example.opalwish.ui.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.opalwish.R
 
-class WishListFragment : Fragment() {
+class CartFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,8 +19,7 @@ class WishListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_wish_list, container, false)
+        return inflater.inflate(R.layout.fragment_cart, container, false)
     }
-
 
 }

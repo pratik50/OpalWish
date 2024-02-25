@@ -1,4 +1,4 @@
-package com.example.opalwish.ui
+package com.example.opalwish.ui.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

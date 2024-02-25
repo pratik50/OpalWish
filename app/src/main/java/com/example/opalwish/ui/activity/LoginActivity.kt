@@ -1,4 +1,4 @@
-package com.example.opalwish.ui
+package com.example.opalwish.ui.activity
 
 import android.app.Dialog
 import android.content.Intent

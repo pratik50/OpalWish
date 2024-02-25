@@ -9,7 +9,7 @@ import coil.load
 import com.example.opalwish.data.ProductModel
 import com.example.opalwish.R
 import com.example.opalwish.databinding.RvItemBinding
-import com.example.opalwish.ui.DetailActivity
+import com.example.opalwish.ui.activity.DetailActivity
 
 class ProductAdapter(var context: Context, var productList: ArrayList<ProductModel>) :
     RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
@@ -30,19 +30,18 @@ class ProductAdapter(var context: Context, var productList: ArrayList<ProductMod
         holder.binding.productImage.load(productList.get(position).imageUrl){
             placeholder(R.drawable.image_loader)
         }
-        holder.binding.productName.text = productList.get(position).name
-        holder.binding.productPrice.text = productList.get(position).price.toString()
-        holder.binding.productCode.text = productList.get(position).productCode
+        holder.binding.productName.text = productList[position].name
+        holder.binding.productPrice.text = productList[position].price.toString()
+        holder.binding.productCode.text = productList[position].productCode
 
         holder.itemView.setOnClickListener {
 
             context.startActivity(
                 Intent(context, DetailActivity::class.java).putExtra(
                     "PRODUCT_ID",
-                    productList.get(position).id
+                    productList[position].id
                 )
             )
         }
     }
-
 }

@@ -1,4 +1,4 @@
-package com.example.opalwish.ui
+package com.example.opalwish.ui.fragment
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.opalwish.adapters.ProductAdapter
 import com.example.opalwish.data.ProductModel
+import com.example.opalwish.ui.activity.ProductCategoryActivity
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase

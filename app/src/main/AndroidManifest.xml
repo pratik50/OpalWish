@@ -13,32 +13,32 @@
         android:theme="@style/Theme.OpalWish"
         tools:targetApi="31">
         <activity
-            android:name=".ui.OnboardingActivity"
+            android:name=".ui.activity.OnboardingActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.activity.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.LoginActivity"
+            android:name=".ui.activity.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.ProductCategoryActivity"
+            android:name=".ui.activity.ProductCategoryActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.ShippingActivity"
+            android:name=".ui.activity.ShippingActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.DetailActivity"
+            android:name=".ui.activity.DetailActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.HomeActivity"
+            android:name=".ui.activity.HomeActivity"
             android:exported="false"
             android:label="@string/title_activity_home" />
         <activity
-            android:name=".ui.SignUpActivity"
+            android:name=".ui.activity.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.SplashScreenActivity"
+            android:name=".ui.activity.SplashScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
