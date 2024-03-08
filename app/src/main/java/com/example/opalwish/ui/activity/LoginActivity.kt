@@ -16,6 +16,7 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.opalwish.R
+import com.github.leandroborgesferreira.loadingbutton.customViews.CircularProgressButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -33,7 +34,6 @@ class LoginActivity : AppCompatActivity() {
 
         binding.txtSignup.setOnClickListener {
             startActivity(Intent(this@LoginActivity, SignUpActivity::class.java))
-            finish()
         }
 
         //we have pre-initialized the "success popUp window" here for fast optimization
@@ -44,13 +44,15 @@ class LoginActivity : AppCompatActivity() {
         forgotPassDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         binding.forgotPass.setOnClickListener {
-            val verify: Button = forgotPassDialog.findViewById(R.id.verify_btn)
+            val verify: CircularProgressButton = forgotPassDialog.findViewById(R.id.verify_btn)
             val emailEditText: EditText = forgotPassDialog.findViewById(R.id.email)
             val success_text: TextView = forgotPassDialog.findViewById(R.id.success_text)
             val pass_text: TextView = forgotPassDialog.findViewById(R.id.pass_txt)
             forgotPassDialog.show()
+
             verify.setOnClickListener {
 
+                verify.startAnimation()
                 val email = emailEditText.text.toString().trim()
                 if (email.isNotEmpty()) {
                     // Send the password reset email using Firebase
@@ -74,6 +76,7 @@ class LoginActivity : AppCompatActivity() {
                                 },5000)
                             } else {
                                 // If the email is not registered or other issues
+                                verify.revertAnimation()
                                 Toast.makeText(
                                     applicationContext,
                                     "Failed to send password reset email. Check your email address.",
@@ -82,6 +85,7 @@ class LoginActivity : AppCompatActivity() {
                             }
                         }
                 } else {
+                    verify.revertAnimation()
                     Toast.makeText(
                         applicationContext,
                         "Enter your email address first.",
@@ -99,13 +103,19 @@ class LoginActivity : AppCompatActivity() {
         val done: Button = dialog.findViewById(R.id.done)
 
         binding.loginBtn.setOnClickListener {
+
             val email = binding.loginMail.text.toString().trim()
             val password = binding.loginPass.text.toString().trim()
 
             if (email.isNotEmpty() && password.isNotEmpty()) {
+                binding.loginBtn.startAnimation()
+
                 Firebase.auth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
+                            binding.loginBtn.revertAnimation{
+                                binding.loginBtn.text = "Logged In"
+                            }
                             dialog.show()
                             // Sign in success, update UI with the signed-in user's information
                             val user = Firebase.auth.currentUser
@@ -124,6 +134,9 @@ class LoginActivity : AppCompatActivity() {
                                 Toast.makeText(this, "Something went wrong!!", Toast.LENGTH_SHORT).show()
                             }
                         } else {
+                            binding.loginBtn.revertAnimation{
+                                binding.loginBtn.text = "login"
+                            }
                             // If sign in fails, display a message to the user.
                             Toast.makeText(
                                 baseContext,

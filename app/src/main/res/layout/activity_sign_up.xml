@@ -110,6 +110,13 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_16sdp"
         android:text="Sign Up"
+        android:stateListAnimator="@null"
+        android:textColor="@color/white"
+        app:spinning_bar_color="@color/white"
+        app:finalCornerAngle="@dimen/_120sdp"
+        app:initialCornerAngle="@dimen/_120sdp"
+        app:spinning_bar_padding="@dimen/_5sdp"
+        android:background="@drawable/animation_btn_bg"
         app:layout_constraintLeft_toLeftOf="@id/confirmPass"
         app:layout_constraintRight_toRightOf="@id/confirmPass"
         app:layout_constraintTop_toBottomOf="@id/confirmPass" />

@@ -76,12 +76,10 @@ class OnboardingActivity : AppCompatActivity() {
 
         binding.skipBtn.setOnClickListener {
             startActivity(Intent(this@OnboardingActivity, SignUpActivity::class.java))
-            finish()
         }
 
         binding.startBtn.setOnClickListener {
             startActivity(Intent(this@OnboardingActivity, SignUpActivity::class.java))
-            finish()
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->

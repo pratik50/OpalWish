@@ -34,9 +34,11 @@ class SplashScreenActivity : AppCompatActivity() {
                 if (auth.currentUser == null) {
                         // User is not authenticated, so navigate to the sign-up/login activity
                     startActivity(Intent(this@SplashScreenActivity, OnboardingActivity::class.java))
+                    finish()
                 } else {
                         // User is authenticated, so navigate to the home activity
                     startActivity(Intent(this@SplashScreenActivity, HomeActivity::class.java))
+                    finish()
                 } },3000)
         }
     }

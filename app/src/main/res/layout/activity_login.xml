@@ -82,7 +82,7 @@
         app:layout_constraintTop_toBottomOf="@id/loginPass" />
 
 
-    <Button
+    <com.github.leandroborgesferreira.loadingbutton.customViews.CircularProgressButton
         android:id="@+id/login_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -90,6 +90,13 @@
         android:layout_marginEnd="@dimen/_16sdp"
         android:layout_marginStart="@dimen/_16sdp"
         android:text="Login"
+        android:stateListAnimator="@null"
+        android:textColor="@color/white"
+        app:spinning_bar_color="@color/white"
+        app:finalCornerAngle="@dimen/_120sdp"
+        app:initialCornerAngle="@dimen/_120sdp"
+        app:spinning_bar_padding="@dimen/_5sdp"
+        android:background="@drawable/animation_btn_bg"
         app:layout_constraintLeft_toLeftOf="@id/forgot_pass"
         app:layout_constraintRight_toRightOf="@id/forgot_pass"
         app:layout_constraintTop_toBottomOf="@id/forgot_pass" />
@@ -103,7 +110,6 @@
         android:gravity="center"
         android:text="Don't have an account?"
         app:layout_constraintEnd_toStartOf="@+id/txt_signup"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/login_btn" />
@@ -119,8 +125,7 @@
         android:text="sign Up"
         android:textColor="#F68B8B"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@id/login_btn"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@id/login_btn" />
 
