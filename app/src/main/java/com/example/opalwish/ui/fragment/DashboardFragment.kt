@@ -31,11 +31,7 @@ class DashboardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = com.example.opalwish.databinding.FragmentDashboardBinding.inflate(
-            inflater,
-            container,
-            false
-        )
+        binding = com.example.opalwish.databinding.FragmentDashboardBinding.inflate(inflater, container, false)
 
         searchItem()
 
@@ -67,6 +63,7 @@ class DashboardFragment : Fragment() {
         productList = ArrayList()
         adapter = ProductAdapter(requireContext(), productList)
         binding.mainRv.adapter = adapter
+        binding.mainRv2.adapter = adapter
 
         Firebase.firestore.collection("Products").get().addOnSuccessListener {
 
@@ -78,9 +75,16 @@ class DashboardFragment : Fragment() {
 
             }
             adapter.notifyDataSetChanged()
+
+            if (productList.isNotEmpty()) {
+                binding.offer.visibility = View.VISIBLE
+            } else {
+                binding.offer.visibility = View.GONE
+            }
         }.addOnFailureListener{
             Toast.makeText(requireContext(), it.localizedMessage, Toast.LENGTH_SHORT).show()
         }
+
 
 
         binding.tshirt.setOnClickListener {

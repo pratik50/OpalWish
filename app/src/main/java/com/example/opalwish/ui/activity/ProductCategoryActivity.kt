@@ -2,6 +2,7 @@ package com.example.opalwish.ui.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.opalwish.adapters.ProductAdapter
 import com.example.opalwish.data.ProductModel
@@ -25,7 +26,7 @@ class ProductCategoryActivity : AppCompatActivity() {
         productList = arrayList
 
         adapter = ProductAdapter(this@ProductCategoryActivity, productList)
-        binding.rv.layoutManager = LinearLayoutManager(this@ProductCategoryActivity)
+        binding.rv.layoutManager = GridLayoutManager((this@ProductCategoryActivity),2)
         binding.rv.adapter = adapter
 
         if (intent.hasExtra("Category")) {

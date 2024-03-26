@@ -30,9 +30,9 @@ class ProductAdapter(var context: Context, var productList: ArrayList<ProductMod
         holder.binding.productImage.load(productList.get(position).imageUrl){
             placeholder(R.drawable.image_loader)
         }
-        holder.binding.productName.text = productList[position].name
-        holder.binding.productPrice.text = productList[position].price.toString()
-        holder.binding.productCode.text = productList[position].productCode
+
+        //holder.binding.productName.text = productList[position].name
+        //holder.binding.productPrice.text = productList[position].price.toString()
 
         holder.itemView.setOnClickListener {
 

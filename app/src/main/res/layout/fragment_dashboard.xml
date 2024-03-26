@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#FDFDFD"
+    android:background="#F9F9F9"
     tools:context=".ui.fragment.DashboardFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -355,8 +359,14 @@
         android:id="@+id/divider2"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginBottom="@dimen/_5sdp"
         android:background="?android:attr/dividerVertical" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_180sdp"
+        android:src="@drawable/offer_sticker"
+        android:layout_margin="@dimen/_8sdp"/>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/main_rv"
@@ -367,4 +377,39 @@
         tools:itemCount="25"
         tools:listitem="@layout/rv_item" />
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/offer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/offer_sticker2"
+        android:layout_marginTop="@dimen/_13sdp"
+        android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/offer2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/offer_sticker3"
+            android:layout_marginTop="@dimen/_13sdp"
+            android:layout_marginBottom="@dimen/_4sdp"
+            android:visibility="visible"/>
+
+        <include
+            android:id="@+id/offer4_content"
+            layout="@layout/offer_sticker4"
+            android:layout_margin="@dimen/_8sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/main_rv2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_5sdp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:itemCount="25"
+            tools:listitem="@layout/rv_item" />
+
+    </LinearLayout>
+</ScrollView>

@@ -63,10 +63,10 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
     implementation (libs.sdp.android)
     implementation (libs.ssp.android)
-    implementation("io.coil-kt:coil:2.5.0")
+    implementation(libs.coil)
 
     //viewpager2 indicator
-    implementation ("me.relex:circleindicator:2.1.6")
+    implementation (libs.circleindicator)
 
     //Navigation component
     val nav_version = "2.5.2"
@@ -77,19 +77,19 @@ dependencies {
     implementation(libs.loading.button.android)
 
     //Glide
-    implementation ("com.github.bumptech.glide:glide:4.13.0")
+    implementation (libs.glide)
 
     //circular image
-    implementation ("de.hdodenhof:circleimageview:3.1.0")
+    implementation (libs.circleimageview)
 
     //Android Ktx
     implementation ("androidx.navigation:navigation-fragment-ktx:2.6.0")
 
     //Coroutines with firebase
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.7.3")
+    implementation (libs.kotlinx.coroutines.play.services)
 
-    implementation("com.google.dagger:hilt-android:2.44")
-    kapt("com.google.dagger:hilt-android-compiler:2.44")
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
 
 }
 // Allow references to generated code
