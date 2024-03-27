@@ -8,7 +8,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.opalwish.R
 
-class ViewPagerAdapter(private var title: List<String>, private var detail: List<String>, private var image: List<Int>): RecyclerView.Adapter<ViewPagerAdapter.Pager2ViewHolder>() {
+class ViewPagerAdapter(private var title: List<String>, private var detail: List<String>, private var image: List<Int>):
+    RecyclerView.Adapter<ViewPagerAdapter.Pager2ViewHolder>() {
 
     inner class Pager2ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
 

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F9F9F9"
+    android:scrollbars="none"
     tools:context=".ui.fragment.DashboardFragment">
 
     <LinearLayout
@@ -132,6 +133,7 @@
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="@dimen/_99sdp"
+        android:background="@color/white"
         android:scrollbars="none">
 
         <LinearLayout
@@ -361,11 +363,28 @@
         android:layout_height="1dp"
         android:background="?android:attr/dividerVertical" />
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_180sdp"
-        android:src="@drawable/offer_sticker"
-        android:layout_margin="@dimen/_8sdp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/slider_viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true" />
+
+            <me.relex.circleindicator.CircleIndicator3
+                android:id="@+id/indicator"
+                app:ci_drawable="@drawable/indicator_selected"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/_9sdp" />
+
+        </RelativeLayout>
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -412,4 +431,4 @@
             tools:listitem="@layout/rv_item" />
 
     </LinearLayout>
-</ScrollView>
+</androidx.core.widget.NestedScrollView>
