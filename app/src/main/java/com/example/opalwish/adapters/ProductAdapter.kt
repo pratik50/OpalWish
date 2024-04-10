@@ -1,5 +1,6 @@
 package com.example.opalwish.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -28,6 +29,7 @@ class ProductAdapter(var context: Context, var productList: ArrayList<ProductMod
         return productList.size
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         holder.binding.productImage.load(productList[position].imageUrl){
@@ -35,7 +37,7 @@ class ProductAdapter(var context: Context, var productList: ArrayList<ProductMod
         }
 
         holder.binding.productName.text = productList[position].name
-        holder.binding.productPrice.text = productList[position].price.toString()
+        holder.binding.productPrice.text = "₹ " + productList[position].price.toString()
         holder.binding.productDesc.text = productList[position].disp
 
         holder.itemView.setOnClickListener {

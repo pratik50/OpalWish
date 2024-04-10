@@ -79,7 +79,7 @@ class DashboardFragment : Fragment() {
         // Fetching data after the shimmer starts
         Handler(Looper.getMainLooper()).postDelayed({
             fetchData()
-        }, 3500)
+        }, 2000)
 
 
         binding.tshirt.setOnClickListener {

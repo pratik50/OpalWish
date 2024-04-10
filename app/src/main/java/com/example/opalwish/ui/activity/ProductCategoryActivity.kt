@@ -1,10 +1,8 @@
 package com.example.opalwish.ui.activity
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.opalwish.adapters.ProductAdapter
 import com.example.opalwish.data.ProductModel
 import com.google.firebase.firestore.ktx.firestore
@@ -37,7 +35,8 @@ class ProductCategoryActivity : AppCompatActivity() {
                     productList.clear()
                     for (i in it.documents) {
 
-                        var tempProductModel = i.toObject<ProductModel>()
+                        @Suppress("DEPRECATION")
+                        val tempProductModel = i.toObject<ProductModel>()
                         tempProductModel?.product_id = i.id
 
                         productList.add(tempProductModel!!)
