@@ -2,7 +2,6 @@ package com.example.opalwish.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import coil.load
@@ -26,8 +25,9 @@ class DetailActivity : AppCompatActivity() {
         if (productId != null) {
             Firebase.firestore.collection("Products").document(productId).get()
                 .addOnSuccessListener {
+                        @Suppress("DEPRECATION")
                         productModel = it.toObject<ProductModel>()!!
-                        productModel.product_id = it.id
+                    productModel.product_id = it.id
                         val imageUrl = productModel.imageUrl
                         binding.productImage.load(imageUrl)
 
