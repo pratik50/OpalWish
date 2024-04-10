@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
@@ -27,7 +26,7 @@ import kotlin.math.abs
 
 class DashboardFragment : Fragment() {
 
-    private lateinit var binding: com.example.opalwish.databinding.FragmentDashboardBinding
+    private lateinit var binding: FragmentDashboardBinding
     private lateinit var productList: ArrayList<ProductModel>
     private lateinit var adapter: ProductAdapter
     private lateinit var viewPager: ViewPager2
@@ -41,7 +40,7 @@ class DashboardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = com.example.opalwish.databinding.FragmentDashboardBinding.inflate(inflater, container, false)
+        binding = FragmentDashboardBinding.inflate(inflater, container, false)
 
         searchItem()
 
@@ -72,26 +71,15 @@ class DashboardFragment : Fragment() {
             }
         })
 
+        // Start shimmer effect
+        Handler(Looper.getMainLooper()).postDelayed({
+            startShimmer()
+        }, 1500)
 
-        Firebase.firestore.collection("Products").get().addOnSuccessListener {
-
-            productList.clear()
-            for (i in it.documents) {
-
-                val tempProductModel = i.toObject<ProductModel>()
-                productList.add(tempProductModel!!)
-
-            }
-            adapter.notifyDataSetChanged()
-
-            if (productList.isNotEmpty()) {
-                binding.offer.visibility = View.VISIBLE
-            } else {
-                binding.offer.visibility = View.GONE
-            }
-        }.addOnFailureListener{
-            Toast.makeText(requireContext(), it.localizedMessage, Toast.LENGTH_SHORT).show()
-        }
+        // Fetching data after the shimmer starts
+        Handler(Looper.getMainLooper()).postDelayed({
+            fetchData()
+        }, 3500)
 
 
         binding.tshirt.setOnClickListener {
@@ -120,6 +108,52 @@ class DashboardFragment : Fragment() {
         }
         binding.caps.setOnClickListener {
             startActivity(Intent(requireContext(), ProductCategoryActivity::class.java).putExtra("Category","Caps"))
+        }
+    }
+
+    private fun startShimmer() {
+        binding.apply {
+            shimmerRv1.startShimmer()
+            shimmerRv2.startShimmer()
+            shimmerRv3.startShimmer()
+            shimmerRv4.startShimmer()
+            shimmerRv5.startShimmer()
+            shimmerRv6.startShimmer()
+        }
+    }
+
+    private fun fetchData() {
+        Firebase.firestore.collection("Products").get().addOnSuccessListener { documents ->
+            productList.clear()
+            for (document in documents) {
+                val product_id = document.id
+                val tempProductModel = document.toObject<ProductModel>()
+                tempProductModel.product_id = product_id
+                productList.add(tempProductModel)
+            }
+            adapter.notifyDataSetChanged()
+
+            // Hide shimmer and show RecyclerView
+            binding.apply {
+                shimmerRv1.visibility = View.GONE
+                shimmerRv2.visibility = View.GONE
+                shimmerRv3.visibility = View.GONE
+                shimmerRv4.visibility = View.GONE
+                shimmerRv5.visibility = View.GONE
+                shimmerRv6.visibility = View.GONE
+
+                mainRv.visibility = View.VISIBLE
+                mainRv2.visibility = View.VISIBLE
+            }
+
+            // Check if the list is empty and update visibility of offer view
+            if (productList.isNotEmpty()) {
+                binding.offer.visibility = View.VISIBLE
+            } else {
+                binding.offer.visibility = View.GONE
+            }
+        }.addOnFailureListener { exception ->
+            Toast.makeText(requireContext(), exception.localizedMessage, Toast.LENGTH_SHORT).show()
         }
     }
 

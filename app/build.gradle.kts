@@ -91,6 +91,10 @@ dependencies {
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
 
+    //Facebook Shimmer effect
+    implementation (libs.shimmer)
+
+
 }
 // Allow references to generated code
 kapt {

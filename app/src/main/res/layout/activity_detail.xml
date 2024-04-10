@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#F9F9F9"
     tools:context=".ui.activity.DetailActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -46,39 +52,122 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:layout_marginEnd="@dimen/_8sdp"
         android:layout_weight="1">
 
-        <Button
-            android:id="@+id/buy_now"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/product_name"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Buy Now"
-            app:layout_constraintBottom_toTopOf="@+id/button4"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:fontFamily="@font/actor"
+            android:text="Demo Dress"
+            android:textSize="@dimen/_20sdp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageView4"
+            tools:ignore="NotSibling" />
 
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/product_desc"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Add to Cart"
-            app:layout_constraintBottom_toTopOf="@+id/button5"
-            app:layout_constraintEnd_toEndOf="@+id/buy_now"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/buy_now"
-            app:layout_constraintTop_toBottomOf="@+id/buy_now" />
+            android:layout_marginTop="@dimen/_3sdp"
+            android:fontFamily="@font/actor"
+            android:text="Vision Alta Men’s Shoes Size (All Colours)"
+            android:textSize="@dimen/_14sdp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/product_name" />
 
-        <Button
-            android:id="@+id/button5"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/product_price"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Add to Wishlist"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button4" />
+            android:layout_marginTop="@dimen/_6sdp"
+            android:text="₹.5674"
+            android:textColor="#F68B8B"
+            android:textSize="@dimen/_22sdp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/product_desc" />
+
+        <TextView
+            android:id="@+id/product_detail_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:text="Product Details"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/product_price" />
+
+        <TextView
+            android:id="@+id/product_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_1sdp"
+            android:fontFamily="@font/source_sans_pro"
+            android:text="Perhaps the most iconic sneaker of all-time, this original colorway is the cornerstone to any sneaker collection. Made famous in 1985 by Michael Jordan, the shoe has stood the test of time, becoming the most famous colorway of the Air Jordan 1. This 2015 release saw the ...More"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/product_detail_text"
+            tools:ignore="TextSizeCheck" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
-</LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bottom_buttons"
+            android:layout_width="match_parent"
+            android:background="@color/white"
+            android:layout_height="@dimen/_70sdp">
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_2sdp"
+                app:layout_constraintBottom_toTopOf="@id/bottom_buttons"/>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_addToCart"
+                android:layout_width="@dimen/_130sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:backgroundTint="@color/shimmer_color"
+                android:drawableLeft="@drawable/addtocart"
+                android:fontFamily="@font/source_sans_pro"
+                android:gravity="center"
+                android:text="Add to Cart"
+                android:background="@drawable/square_btn_bg"
+                android:textSize="@dimen/_13sdp"
+                app:backgroundTint="#C0C0C0"
+                android:layout_marginLeft="@dimen/_9sdp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btn_buyNow"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="TextSizeCheck" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_buyNow"
+                android:layout_width="@dimen/_130sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:drawableLeft="@drawable/buynow"
+                android:background="@drawable/square_btn_bg"
+                android:fontFamily="@font/source_sans_pro"
+                android:gravity="center"
+                android:layout_marginRight="@dimen/_9sdp"
+                android:text="Buy Now"
+                android:textSize="@dimen/_13sdp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btn_addToCart"
+                tools:ignore="TextSizeCheck" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

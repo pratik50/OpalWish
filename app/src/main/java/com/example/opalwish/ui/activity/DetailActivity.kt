@@ -2,6 +2,7 @@ package com.example.opalwish.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import coil.load
@@ -22,20 +23,27 @@ class DetailActivity : AppCompatActivity() {
 
         val productId = intent.getStringExtra("PRODUCT_ID")
 
-        if(productId != null) {
+        if (productId != null) {
             Firebase.firestore.collection("Products").document(productId).get()
                 .addOnSuccessListener {
+                        productModel = it.toObject<ProductModel>()!!
+                        productModel.product_id = it.id
+                        val imageUrl = productModel.imageUrl
+                        binding.productImage.load(imageUrl)
 
-                    productModel = it.toObject<ProductModel>()!!
-                    productModel.id = it.id
-                    binding.productImage.load(productModel.imageUrl)
-
+                        binding.productName.text = productModel.name
+                        binding.productDesc.text = productModel.disp
+                        binding.productDetails.text = productModel.details
+                        binding.productPrice.text = productModel.price.toString()
+                    }
+                .addOnFailureListener { exception ->
+                    // Handle failure
+                    Toast.makeText(this, "Failed to get product: ${exception.message}", Toast.LENGTH_SHORT).show()
                 }
-            }else{
-            Toast.makeText(this, "Occurring some issue in backend !!", Toast.LENGTH_SHORT).show()
         }
 
-        binding.buyNow.setOnClickListener {
+
+        binding.btnBuyNow.setOnClickListener {
             startActivity(Intent(this@DetailActivity, ShippingActivity::class.java))
         }
     }

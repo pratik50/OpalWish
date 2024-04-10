@@ -4,12 +4,15 @@ import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.opalwish.data.ProductModel
 import com.example.opalwish.R
 import com.example.opalwish.databinding.RvItemBinding
 import com.example.opalwish.ui.activity.DetailActivity
+import com.example.opalwish.ui.activity.ProductCategoryActivity
 
 class ProductAdapter(var context: Context, var productList: ArrayList<ProductModel>) :
     RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
@@ -27,21 +30,21 @@ class ProductAdapter(var context: Context, var productList: ArrayList<ProductMod
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        holder.binding.productImage.load(productList.get(position).imageUrl){
+        holder.binding.productImage.load(productList[position].imageUrl){
             placeholder(R.drawable.image_loader)
         }
 
-        //holder.binding.productName.text = productList[position].name
-        //holder.binding.productPrice.text = productList[position].price.toString()
+        holder.binding.productName.text = productList[position].name
+        holder.binding.productPrice.text = productList[position].price.toString()
+        holder.binding.productDesc.text = productList[position].disp
 
         holder.itemView.setOnClickListener {
+            val productId = productList[position].product_id
 
-            context.startActivity(
-                Intent(context, DetailActivity::class.java).putExtra(
-                    "PRODUCT_ID",
-                    productList[position].id
-                )
-            )
+            val intent = Intent(holder.itemView.context, DetailActivity::class.java)
+            intent.putExtra("PRODUCT_ID", productId)
+            holder.itemView.context.startActivity(intent)
+
         }
     }
 }

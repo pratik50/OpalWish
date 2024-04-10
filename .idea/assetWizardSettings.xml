@@ -319,11 +319,25 @@
                   <entry key="vectorAssetStep">
                     <value>
                       <PersistentState>
+                        <option name="children">
+                          <map>
+                            <entry key="clipartAsset">
+                              <value>
+                                <PersistentState>
+                                  <option name="values">
+                                    <map>
+                                      <entry key="url" value="file:$USER_HOME$/Library/Android/sdk/icons/material/materialicons/favorite/baseline_favorite_24.xml" />
+                                    </map>
+                                  </option>
+                                </PersistentState>
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
                         <option name="values">
                           <map>
-                            <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="offer_sticker2" />
-                            <entry key="sourceFile" value="$USER_HOME$/Downloads/Group 33767.svg" />
+                            <entry key="outputName" value="ic_hear_filled" />
+                            <entry key="sourceFile" value="$USER_HOME$/Downloads/buyNow.svg" />
                           </map>
                         </option>
                       </PersistentState>

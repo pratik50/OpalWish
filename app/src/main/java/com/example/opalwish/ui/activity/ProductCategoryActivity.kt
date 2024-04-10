@@ -1,6 +1,7 @@
 package com.example.opalwish.ui.activity
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,7 +13,7 @@ import com.google.firebase.ktx.Firebase
 
 class ProductCategoryActivity : AppCompatActivity() {
 
-    val binding by lazy {
+    private val binding by lazy {
         com.example.opalwish.databinding.ActivityProductCategoryBinding.inflate(layoutInflater)
     }
     private lateinit var adapter: ProductAdapter
@@ -37,7 +38,7 @@ class ProductCategoryActivity : AppCompatActivity() {
                     for (i in it.documents) {
 
                         var tempProductModel = i.toObject<ProductModel>()
-                        tempProductModel?.id = i.id
+                        tempProductModel?.product_id = i.id
 
                         productList.add(tempProductModel!!)
 
