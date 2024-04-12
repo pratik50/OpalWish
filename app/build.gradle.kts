@@ -6,6 +6,7 @@ plugins {
     id("kotlin-parcelize")
     id ("androidx.navigation.safeargs.kotlin")
     kotlin("kapt")
+    id ("kotlin-kapt")
     id("com.google.dagger.hilt.android")
 }
 
@@ -93,6 +94,12 @@ dependencies {
 
     //Facebook Shimmer effect
     implementation (libs.shimmer)
+
+    //Room database
+    val room_version = "2.6.1"
+    implementation (libs.androidx.room.runtime)
+    implementation (libs.androidx.room.ktx)
+    kapt (libs.androidx.room.compiler)
 
 
 }

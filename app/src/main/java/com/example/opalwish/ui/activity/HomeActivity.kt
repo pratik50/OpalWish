@@ -17,10 +17,11 @@ class HomeActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
-        val navView: BottomNavigationView = binding.navView
-
+        val bottomBar: BottomNavigationView = binding.bottomBar
         val navController = findNavController(R.id.nav_host_fragment_activity_home)
+        bottomBar.setupWithNavController(navController)
 
-        navView.setupWithNavController(navController)
+
     }
+
 }

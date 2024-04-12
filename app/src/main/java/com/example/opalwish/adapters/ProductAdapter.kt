@@ -21,7 +21,7 @@ class ProductAdapter(var context: Context, var productList: ArrayList<ProductMod
     inner class ViewHolder(var binding: RvItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        var binding = RvItemBinding.inflate(LayoutInflater.from(context), parent, false)
+        val binding = RvItemBinding.inflate(LayoutInflater.from(context), parent, false)
         return ViewHolder(binding)
     }
 

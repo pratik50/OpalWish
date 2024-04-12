@@ -8,6 +8,16 @@
     android:background="#F9F9F9"
     tools:context=".ui.activity.DetailActivity">
 
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toTopOf="@id/bottom_buttons"
+        app:layout_constraintTop_toTopOf="parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,8 +25,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:layout_height="@dimen/_330sdp">
 
         <ImageView
             android:id="@+id/product_image"
@@ -49,6 +58,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -73,7 +83,7 @@
             android:text="Demo Dress"
             android:textSize="@dimen/_20sdp"
             android:textStyle="bold"
-            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_11sdp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -140,7 +150,7 @@
             app:layout_constraintTop_toTopOf="@id/admin_profile"
             app:layout_constraintBottom_toBottomOf="@id/admin_profile"
             android:textSize="@dimen/_17sdp"
-            android:text="Apple"/>
+            android:text="Seller name"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/follow_btn"
@@ -189,12 +199,17 @@
             app:layout_constraintTop_toBottomOf="@id/product_detail_text"
             tools:ignore="TextSizeCheck" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/bottom_buttons"
             android:layout_width="match_parent"
             android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             android:layout_height="@dimen/_70sdp">
 
             <com.google.android.material.divider.MaterialDivider
@@ -240,5 +255,4 @@
                 app:layout_constraintStart_toEndOf="@id/btn_addToCart"
                 tools:ignore="TextSizeCheck" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
