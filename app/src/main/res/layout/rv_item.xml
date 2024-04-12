@@ -3,8 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="@dimen/_130sdp"
-    android:layout_height="@dimen/_260sdp"
+    android:layout_height="@dimen/_281sdp"
     android:layout_marginStart="@dimen/_12sdp"
+    android:layout_marginTop="@dimen/_7sdp"
     android:background="#FFFFFF"
     android:orientation="vertical"
     tools:ignore="MissingDefaultResource">
@@ -37,7 +38,8 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/_1sdp"
                 android:paddingStart="@dimen/_7sdp"
                 android:orientation="vertical">
 

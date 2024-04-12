@@ -27,6 +27,16 @@
         android:name="com.example.opalwish.ui.fragment.DashboardFragment"
         android:label="DashboardFragment"
         tools:layout="@layout/fragment_dashboard"
-        />
+        >
+        <action
+            android:id="@+id/action_dashboardFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_wishListFragment"
+            app:destination="@id/wishListFragment" />
+    </fragment>
 
 </navigation>

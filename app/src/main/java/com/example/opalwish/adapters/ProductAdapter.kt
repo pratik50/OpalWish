@@ -1,5 +1,6 @@
 package com.example.opalwish.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -20,7 +21,7 @@ class ProductAdapter(var context: Context, var productList: ArrayList<ProductMod
     inner class ViewHolder(var binding: RvItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        var binding = RvItemBinding.inflate(LayoutInflater.from(context), parent, false)
+        val binding = RvItemBinding.inflate(LayoutInflater.from(context), parent, false)
         return ViewHolder(binding)
     }
 
@@ -28,6 +29,7 @@ class ProductAdapter(var context: Context, var productList: ArrayList<ProductMod
         return productList.size
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         holder.binding.productImage.load(productList[position].imageUrl){
@@ -35,7 +37,7 @@ class ProductAdapter(var context: Context, var productList: ArrayList<ProductMod
         }
 
         holder.binding.productName.text = productList[position].name
-        holder.binding.productPrice.text = productList[position].price.toString()
+        holder.binding.productPrice.text = "₹ " + productList[position].price.toString()
         holder.binding.productDesc.text = productList[position].disp
 
         holder.itemView.setOnClickListener {

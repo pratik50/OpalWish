@@ -9,7 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
@@ -41,6 +43,10 @@ class DashboardFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentDashboardBinding.inflate(inflater, container, false)
+
+        val preference = requireContext().getSharedPreferences("info",AppCompatActivity.MODE_PRIVATE)
+        if(preference.getBoolean("isCart",false))
+            findNavController().navigate(R.id.action_dashboardFragment_to_cartFragment)
 
         searchItem()
 
@@ -79,7 +85,7 @@ class DashboardFragment : Fragment() {
         // Fetching data after the shimmer starts
         Handler(Looper.getMainLooper()).postDelayed({
             fetchData()
-        }, 3500)
+        }, 2000)
 
 
         binding.tshirt.setOnClickListener {
@@ -108,6 +114,10 @@ class DashboardFragment : Fragment() {
         }
         binding.caps.setOnClickListener {
             startActivity(Intent(requireContext(), ProductCategoryActivity::class.java).putExtra("Category","Caps"))
+        }
+
+        binding.userIcon.setOnClickListener {
+            findNavController().navigate(R.id.action_dashboardFragment_to_profileFragment)
         }
     }
 

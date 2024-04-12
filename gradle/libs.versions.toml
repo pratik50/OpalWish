@@ -15,6 +15,7 @@ kotlinx-coroutines-play-services = "1.7.3"
 loading-button-android = "2.3.0"
 material = "1.9.0"
 constraintlayout = "2.1.4"
+room-runtime = "2.6.1"
 shimmer = "0.5.0"
 ssp-android = "1.1.0"
 sdp-android = "1.1.0"
@@ -29,6 +30,9 @@ activity = "1.8.0"
 car-ui-lib = "2.6.0"
 
 [libraries]
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room-runtime" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room-runtime" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room-runtime" }
 circleimageview = { module = "de.hdodenhof:circleimageview", version.ref = "circleimageview" }
 circleindicator = { module = "me.relex:circleindicator", version.ref = "circleindicator" }
 coil = { module = "io.coil-kt:coil", version.ref = "coil" }
