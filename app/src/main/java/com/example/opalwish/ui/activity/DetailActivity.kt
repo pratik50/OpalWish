@@ -21,6 +21,7 @@ import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class DetailActivity : AppCompatActivity() {
 
@@ -68,7 +69,7 @@ class DetailActivity : AppCompatActivity() {
         }
 
         binding.btnBuyNow.setOnClickListener {
-            startActivity(Intent(this@DetailActivity, ShippingActivity::class.java))
+            startActivity(Intent(this@DetailActivity, CheckoutActivity::class.java))
         }
 
         
@@ -117,10 +118,13 @@ class DetailActivity : AppCompatActivity() {
         lifecycleScope.launch(Dispatchers.IO) {
 
             roomDao.insertProduct(data)
-            binding.btnAddToCart.text = "Go to Cart"
+
+            withContext(Dispatchers.Main) {
+                // Update UI here, such as setting text on a TextView
+                binding.btnAddToCart.text = "Go to Cart"
+            }
         }
     }
-
     private fun openCart() {
 
         val preferences = this.getSharedPreferences("info", MODE_PRIVATE)

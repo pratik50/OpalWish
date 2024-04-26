@@ -210,7 +210,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_height="@dimen/_70sdp">
+            android:layout_height="@dimen/_60sdp">
 
             <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"
@@ -220,7 +220,7 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_addToCart"
                 android:layout_width="@dimen/_130sdp"
-                android:layout_height="@dimen/_50sdp"
+                android:layout_height="@dimen/_40sdp"
                 android:backgroundTint="@color/shimmer_color"
                 android:drawableLeft="@drawable/addtocart"
                 android:fontFamily="@font/source_sans_pro"
@@ -240,7 +240,7 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_buyNow"
                 android:layout_width="@dimen/_130sdp"
-                android:layout_height="@dimen/_50sdp"
+                android:layout_height="@dimen/_40sdp"
                 android:drawableLeft="@drawable/buynow"
                 android:background="@drawable/square_btn_bg"
                 android:fontFamily="@font/source_sans_pro"

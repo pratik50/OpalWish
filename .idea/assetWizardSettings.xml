@@ -326,7 +326,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:$USER_HOME$/Library/Android/sdk/icons/material/materialicons/favorite/baseline_favorite_24.xml" />
+                                      <entry key="url" value="file:$USER_HOME$/Library/Android/sdk/icons/material/materialicons/clear/baseline_clear_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -336,7 +336,7 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_hear_filled" />
+                            <entry key="outputName" value="clear_icon" />
                             <entry key="sourceFile" value="$USER_HOME$/Downloads/buyNow.svg" />
                           </map>
                         </option>

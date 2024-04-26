@@ -10,18 +10,30 @@
         android:name="com.example.opalwish.ui.fragment.CartFragment"
         android:label="CartFragment"
         tools:layout="@layout/fragment_cart"
-        />
+        >
+        <action
+            android:id="@+id/action_cartFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment" />
+    </fragment>
     <fragment
         android:id="@+id/wishListFragment"
         android:name="com.example.opalwish.ui.fragment.WishListFragment"
         android:label="WishListFragment"
         tools:layout="@layout/fragment_wish_list"
-        />
+        >
+        <action
+            android:id="@+id/action_wishListFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.opalwish.ui.fragment.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment" />
+    </fragment>
     <fragment
         android:id="@+id/dashboardFragment"
         android:name="com.example.opalwish.ui.fragment.DashboardFragment"

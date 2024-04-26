@@ -9,11 +9,19 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.opalwish.R
 import com.example.opalwish.databinding.RvCartItemBinding
+import com.example.opalwish.room_database.AppDatabase
 import com.example.opalwish.room_database.RoomProductModel
 import com.example.opalwish.ui.activity.DetailActivity
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import kotlin.math.log
 
 class CartProductAdapter(var context: Context, private val cartItemList: List<RoomProductModel>) :
     RecyclerView.Adapter<CartProductAdapter.CartItemViewHolder>() {
+
 
     class CartItemViewHolder(val binding: RvCartItemBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -22,9 +30,31 @@ class CartProductAdapter(var context: Context, private val cartItemList: List<Ro
         return CartItemViewHolder(binding)
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     override fun onBindViewHolder(holder: CartItemViewHolder, position: Int) {
+
+        val dao = AppDatabase.getInstance(context).RoomDao()
+
         holder.binding.productImage.load(cartItemList[position].productImageUrl){
             placeholder(R.drawable.image_loader)
+        }
+
+        holder.binding.checkbox.isChecked = cartItemList[position].isSelected
+        holder.binding.checkbox.setOnCheckedChangeListener { _, isChecked ->
+            cartItemList[position].isSelected = isChecked
+
+            GlobalScope.launch(Dispatchers.IO) {
+                dao.updateProduct(cartItemList[position])
+            }
+        }
+
+
+        holder.binding.clearProduct.setOnClickListener{
+
+            GlobalScope.launch(Dispatchers.IO) {
+                dao.deleteProduct(cartItemList[position].product_id)
+            }
+
         }
 
         holder.binding.productImage.setOnClickListener {

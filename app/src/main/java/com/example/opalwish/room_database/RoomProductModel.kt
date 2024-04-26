@@ -23,5 +23,10 @@ data class RoomProductModel(
     var productDisp: String?=null,
 
     @ColumnInfo(name = "productImageUrl")
-    var productImageUrl: String?=null
+    var productImageUrl: String?=null,
+
+    @ColumnInfo(name = "isSelected")
+    var isSelected: Boolean = false
+
+
 )

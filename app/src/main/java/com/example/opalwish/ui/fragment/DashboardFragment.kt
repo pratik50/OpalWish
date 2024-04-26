@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity.MODE_PRIVATE
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.CompositePageTransformer
@@ -44,9 +45,10 @@ class DashboardFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentDashboardBinding.inflate(inflater, container, false)
 
-        val preference = requireContext().getSharedPreferences("info",AppCompatActivity.MODE_PRIVATE)
-        if(preference.getBoolean("isCart",false))
+        val preferences = requireContext().getSharedPreferences("info", MODE_PRIVATE)
+        if(preferences.getBoolean("isCart",false))
             findNavController().navigate(R.id.action_dashboardFragment_to_cartFragment)
+
 
         searchItem()
 
