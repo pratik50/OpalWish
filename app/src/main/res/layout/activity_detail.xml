@@ -58,13 +58,24 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/detail_shimmer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="@dimen/_8sdp"
-        android:layout_marginEnd="@dimen/_8sdp"
-        android:layout_weight="1">
+            <include
+                layout="@layout/detail_activity_shimmer_layout"/>
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/detail_info"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:visibility="gone"
+            android:layout_weight="1">
 
         <CheckBox
             android:id="@+id/wishlist_btn"
