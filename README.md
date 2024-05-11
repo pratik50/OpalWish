@@ -16,7 +16,7 @@ OpalWish is a full-stack e-commerce application built using Kotlin for the backe
 - Browse products from various categories
 - Add products to cart and proceed to checkout
 - Secure user authentication and account management
-- Admin panel for managing products and orders
+- Admin panel for managing products and orders.  [Click to go AdminApp](https://github.com/pratik50/OpalWish-Admin)
 
 ## Installation
 
