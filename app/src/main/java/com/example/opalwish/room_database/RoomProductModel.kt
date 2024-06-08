@@ -11,7 +11,7 @@ data class RoomProductModel(
     @PrimaryKey
     @NotNull
 
-    var product_id : String,
+    var product_id : String = "",
 
     @ColumnInfo(name = "productName")
     var productName: String?=null,
@@ -26,7 +26,6 @@ data class RoomProductModel(
     var productImageUrl: String?=null,
 
     @ColumnInfo(name = "isSelected")
-    var isSelected: Boolean = false
-
+    var isSelected: Boolean = false,
 
 )

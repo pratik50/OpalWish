@@ -50,7 +50,6 @@ class CartProductAdapter(var context: Context, private val cartItemList: List<Ro
 
 
         holder.binding.clearProduct.setOnClickListener{
-
             GlobalScope.launch(Dispatchers.IO) {
                 dao.deleteProduct(cartItemList[position].product_id)
             }

@@ -42,7 +42,7 @@
         android:background="@drawable/border_design"
         android:ems="10"
         android:layout_marginTop="@dimen/_24sdp"
-        android:hint="Fist Name"
+        android:hint="First Name"
         android:inputType="text"
         android:layout_marginLeft="@dimen/_7sdp"
         android:paddingStart="15dp"

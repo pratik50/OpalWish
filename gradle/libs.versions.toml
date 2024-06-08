@@ -1,16 +1,18 @@
 [versions]
-agp = "8.5.0-alpha05"
+agp = "8.5.0-alpha06"
 circleimageview = "3.1.0"
 circleindicator = "2.1.6"
 coil = "2.5.0"
 glide = "4.13.0"
+gradle = "8.4.1"
 hilt-android = "2.44"
-kotlin = "1.9.0"
-core-ktx = "1.10.1"
+kotlin = "2.0.0"
+core-ktx = "1.13.1"
 junit = "4.13.2"
 androidx-test-ext-junit = "1.1.5"
 espresso-core = "3.5.1"
 appcompat = "1.6.1"
+kotlin-gradle-plugin = "2.0.0"
 kotlinx-coroutines-play-services = "1.7.3"
 loading-button-android = "2.3.0"
 material = "1.9.0"
@@ -39,12 +41,14 @@ circleindicator = { module = "me.relex:circleindicator", version.ref = "circlein
 coil = { module = "io.coil-kt:coil", version.ref = "coil" }
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt-android" }
 hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt-android" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin-gradle-plugin" }
 kotlinx-coroutines-play-services = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-play-services", version.ref = "kotlinx-coroutines-play-services" }
 loading-button-android = { module = "com.github.leandroborgesferreira:loading-button-android", version.ref = "loading-button-android" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }

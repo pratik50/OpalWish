@@ -1,10 +1,12 @@
 package com.example.opalwish.ui.activity
 
 import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.Window
 import android.widget.Button
 import android.widget.Toast
@@ -26,7 +28,7 @@ class SignUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        val signupbtn: CircularProgressButton = findViewById(R.id.signUp_btn)
+        val signUpBtn: CircularProgressButton = findViewById(R.id.signUp_btn)
 
         //we have pre-initialized the "success popUp window" here for fast optimization
         val dialog = Dialog(this@SignUpActivity)
@@ -40,9 +42,10 @@ class SignUpActivity : AppCompatActivity() {
         binding.txtLogin.setOnClickListener {
             startActivity(Intent(this@SignUpActivity, LoginActivity::class.java))
         }
+
         //Login Success listener with nested "popUp window"
         binding.signUpBtn.setOnClickListener {
-            signupbtn.startAnimation()
+            signUpBtn.startAnimation()
 
             val email = binding.email.text.toString().trim()
             val password = binding.createPass.text.toString().trim()
@@ -50,9 +53,10 @@ class SignUpActivity : AppCompatActivity() {
             val firstName = binding.firstName.text.toString().trim()
             val lastName = binding.lastName.text.toString().trim()
 
+            //checking the data entered is not empty
             if (email.isEmpty() || password.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || passwordCheck.isEmpty()) {
-                signupbtn.revertAnimation {
-                    signupbtn.text = "Sign Up"
+                signUpBtn.revertAnimation {
+                    signUpBtn.text = "Sign Up"
                 }
                 Toast.makeText(
                     this@SignUpActivity,
@@ -60,61 +64,86 @@ class SignUpActivity : AppCompatActivity() {
                     Toast.LENGTH_SHORT
                 ).show()
                 return@setOnClickListener
-            }else if (password != passwordCheck){
-                signupbtn.revertAnimation {
-                    signupbtn.text = "Sign Up"
+            } else if (password != passwordCheck) {
+                signUpBtn.revertAnimation {
+                    signUpBtn.text = "Sign Up"
                 }
                 Toast.makeText(this, "Password doesn't matched", Toast.LENGTH_SHORT).show()
-            }else{
+            } else {
 
-            // Perform sign-up action
-            Firebase.auth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        // Sign-up successful, save user data
-                        val userModel = UserModel(firstName, lastName, password, email)
-                        Firebase.database.reference.child("Users").child(task.result.user!!.uid)
-                            .setValue(userModel)
-                            .addOnCompleteListener {
-                                // Stop loading animation
-                                signupbtn.revertAnimation {
-                                    signupbtn.text = "Signed In"
-                                }
-                                // Show success dialog
-                                dialog.show()
-                                done.setOnClickListener {
-                                    dialog.dismiss()
-                                    startActivity(
-                                        Intent(
-                                            this@SignUpActivity,
-                                            MainActivity::class.java
+                // Perform sign-up action
+                Firebase.auth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+
+                            // Sign-up successful, save user data
+                            val userModel = UserModel(firstName, lastName, password, email)
+                            Firebase.database.reference.child("Users").child(task.result.user!!.uid)
+                                .setValue(userModel)
+                                .addOnCompleteListener {
+
+                                    //storing the data sharedPreference
+                                    sharedPreference(email, password, firstName, lastName);
+
+                                    // Stop loading animation
+                                    signUpBtn.revertAnimation {
+                                        signUpBtn.text = "Signed In"
+                                    }
+
+                                    // Show success dialog
+                                    dialog.show()
+                                    done.setOnClickListener {
+                                        dialog.dismiss()
+                                        startActivity(
+                                            Intent(
+                                                this@SignUpActivity,
+                                                MainActivity::class.java
+                                            )
                                         )
-                                    )
-                                    finish()
+                                        finish()
+                                    }
                                 }
-                            }
-                            .addOnFailureListener {
-                                signupbtn.revertAnimation {
-                                    signupbtn.text = "Sign Up"
+                                .addOnFailureListener {
+                                    signUpBtn.revertAnimation {
+                                        signUpBtn.text = "Sign Up"
+                                    }
+                                    Toast.makeText(
+                                        this@SignUpActivity,
+                                        it.localizedMessage,
+                                        Toast.LENGTH_SHORT
+                                    ).show()
                                 }
-                                Toast.makeText(
-                                    this@SignUpActivity,
-                                    it.localizedMessage,
-                                    Toast.LENGTH_SHORT
-                                ).show()
+                        } else {
+                            signUpBtn.revertAnimation {
+                                signUpBtn.text = "Sign Up"
                             }
-                    } else {
-                        signupbtn.revertAnimation {
-                            signupbtn.text = "Sign Up"
+                            Toast.makeText(
+                                this@SignUpActivity,
+                                task.exception?.localizedMessage ?: "Sign-up failed",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
-                        Toast.makeText(
-                            this@SignUpActivity,
-                            task.exception?.localizedMessage ?: "Sign-up failed",
-                            Toast.LENGTH_SHORT
-                        ).show()
                     }
-                }
             }
         }
+    }
+
+    //storing the data in sharedPreferences
+    private fun sharedPreference(
+        email: String,
+        password: String,
+        firstName: String,
+        lastName: String
+    ) {
+
+        val sharedPref =
+            getSharedPreferences("com.example.oplawish.usersDetail", Context.MODE_PRIVATE)
+        val editor = sharedPref.edit()
+
+        editor.putString("userFirstName", firstName)
+        editor.putString("userLastName", lastName)
+        editor.putString("userEmail", email)
+        editor.putString("userPassword", password)
+        editor.apply()
     }
 }

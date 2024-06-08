@@ -9,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatActivity.MODE_PRIVATE
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -41,7 +40,7 @@ class DashboardFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentDashboardBinding.inflate(inflater, container, false)
 
@@ -139,6 +138,8 @@ class DashboardFragment : Fragment() {
             productList.clear()
             for (document in documents) {
                 val product_id = document.id
+
+                @Suppress("DEPRECATION")
                 val tempProductModel = document.toObject<ProductModel>()
                 tempProductModel.product_id = product_id
                 productList.add(tempProductModel)

@@ -24,4 +24,5 @@ interface RoomDao  {
 
     @Update
     suspend fun updateProduct(product: RoomProductModel)
+
 }

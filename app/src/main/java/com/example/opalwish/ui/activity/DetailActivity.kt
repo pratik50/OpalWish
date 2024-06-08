@@ -26,6 +26,7 @@ class DetailActivity : AppCompatActivity() {
     private val binding by lazy {
         com.example.opalwish.databinding.ActivityDetailBinding.inflate(layoutInflater)
     }
+
     private var productModel = ProductModel()
 
     @SuppressLint("SetTextI18n")
@@ -38,9 +39,12 @@ class DetailActivity : AppCompatActivity() {
         binding.detailShimmer.startShimmer()
         binding.productImage.load(R.drawable.image_loader)
 
+        checkWishlistStatus()
+
+        val firestore = Firebase.firestore
         if (productId != null) {
 
-            Firebase.firestore.collection("Products").document(productId).get()
+            firestore.collection("Products").document(productId).get()
                 .addOnSuccessListener {
 
                     @Suppress("DEPRECATION")
@@ -75,21 +79,36 @@ class DetailActivity : AppCompatActivity() {
             startActivity(Intent(this@DetailActivity, CheckoutActivity::class.java))
         }
 
-        
+        var previousState = productModel.wishlist
+
         binding.wishlistBtn.setOnCheckedChangeListener { _, isChecked ->
 
-            if(isChecked){
-                Toast.makeText(this, "Item added to wishList", Toast.LENGTH_SHORT).show()
-            }else{
-                Toast.makeText(this, "Item removed from WishList", Toast.LENGTH_SHORT).show()
+            if(productId != null){
+
+                firestore.collection("Products").document(productId)
+                    .update("wishlist", isChecked)
+                    .addOnSuccessListener {
+
+                        if (previousState != isChecked){
+                            Toast.makeText(this, "Product added to wishlist", Toast.LENGTH_SHORT).show()
+
+                        }else {
+                            // Display toast message when the product is removed from the wishlist
+                            Toast.makeText(this, "Product removed from wishlist", Toast.LENGTH_SHORT).show()
+                        }
+
+                    }.addOnFailureListener { exception ->
+                        // Handle failure
+                        Toast.makeText(this, "Failed to update wishlist status: ${exception.message}", Toast.LENGTH_SHORT).show()
+
+                        binding.wishlistBtn.isChecked = !isChecked
+                    }
             }
-            
         }
-        
+
         binding.followBtn.setOnClickListener {
             Toast.makeText(this, "Not yet Implemented", Toast.LENGTH_SHORT).show()
         }
-
 
     }
 
@@ -128,6 +147,7 @@ class DetailActivity : AppCompatActivity() {
             }
         }
     }
+
     private fun openCart() {
 
         val preferences = this.getSharedPreferences("info", MODE_PRIVATE)
@@ -137,5 +157,25 @@ class DetailActivity : AppCompatActivity() {
 
         startActivity(Intent(this,HomeActivity::class.java))
         finish()
+    }
+
+    private fun checkWishlistStatus() {
+
+        val productId = intent.getStringExtra("PRODUCT_ID")
+
+        productId?.let { id ->
+            Firebase.firestore.collection("Products").document(id)
+                .get()
+                .addOnSuccessListener { documentSnapshot ->
+                    val product = documentSnapshot.toObject<ProductModel>()
+                    product?.let {
+                        binding.wishlistBtn.isChecked = it.wishlist!!
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    // Handle failure
+                    Toast.makeText(this, "Failed to fetch product details: ${exception.message}", Toast.LENGTH_SHORT).show()
+                }
+        }
     }
 }

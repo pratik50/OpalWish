@@ -4,4 +4,13 @@
     <color name="white">#FFFFFFFF</color>
     <color name="shimmer_color">#c7c7c7</color>
     <color name="theme_color">#F68B8B</color>
+
+    <!-- Custom style for TextInputLayout -->
+    <style name="CustomTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">#F68B8B</item>
+        <item name="hintTextColor">#F68B8B</item>
+        <item name="android:textColorHint">#F68B8B</item>
+        <item name="boxBackgroundMode">outline</item>
+    </style>
+
 </resources>
