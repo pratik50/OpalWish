@@ -90,6 +90,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Name"
+                android:textColor="@color/GreyText_color"
+                android:focusable="false"
                 android:inputType="textPersonName"
                 android:padding="16dp"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -109,6 +111,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Email-id"
+                android:textColor="@color/GreyText_color"
+                android:focusable="false"
                 android:inputType="textEmailAddress"
                 android:padding="16dp"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -127,8 +131,10 @@
                 android:id="@+id/et_mobile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/GreyText_color"
                 android:hint="Mobile Number"
                 android:inputType="phone"
+                android:focusable="false"
                 android:padding="16dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -147,6 +153,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Location"
+                android:focusable="false"
+                android:textColor="@color/GreyText_color"
                 android:inputType="textPostalAddress"
                 android:padding="16dp"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -173,6 +181,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Male"
+                android:defaultFocusHighlightEnabled="true"
                 android:layout_marginEnd="16dp"/>
 
             <RadioButton
@@ -189,22 +198,6 @@
                 android:text="Other"/>
         </RadioGroup>
 
-        <com.github.leandroborgesferreira.loadingbutton.customViews.CircularProgressButton
-            android:id="@+id/saveChangesBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_19sdp"
-            android:layout_marginEnd="@dimen/_11sdp"
-            android:layout_marginStart="@dimen/_11sdp"
-            android:text="Save Changes"
-            android:stateListAnimator="@null"
-            android:textColor="@color/white"
-            app:spinning_bar_color="@color/white"
-            app:finalCornerAngle="@dimen/_120sdp"
-            app:initialCornerAngle="@dimen/_120sdp"
-            app:spinning_bar_padding="@dimen/_5sdp"
-            android:background="@drawable/animation_btn_bg"
-            />
     </LinearLayout>
     </ScrollView>
 </LinearLayout>

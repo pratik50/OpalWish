@@ -7,6 +7,4 @@ data class ProductModel(
     var disp: String?=null,
     var details: String?=null,
     var imageUrl: String?=null,
-    var wishlist: Boolean?=false,
-    var selectedQuantity: String?=null,
 )

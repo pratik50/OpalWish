@@ -2,9 +2,12 @@ package com.example.opalwish.ui.activity
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
@@ -14,6 +17,10 @@ import com.example.opalwish.data.ProductModel
 import com.example.opalwish.room_database.AppDatabase
 import com.example.opalwish.room_database.RoomDao
 import com.example.opalwish.room_database.RoomProductModel
+import com.google.ar.core.ArCoreApk
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
@@ -33,6 +40,10 @@ class DetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        binding.arButton.setOnClickListener{
+            checkArAvailability()
+        }
 
         val productId = intent.getStringExtra("PRODUCT_ID")
 
@@ -79,32 +90,56 @@ class DetailActivity : AppCompatActivity() {
             startActivity(Intent(this@DetailActivity, CheckoutActivity::class.java))
         }
 
-        var previousState = productModel.wishlist
+        binding.wishlistBtn.setOnClickListener {
 
-        binding.wishlistBtn.setOnCheckedChangeListener { _, isChecked ->
 
-            if(productId != null){
+                val userId = FirebaseAuth.getInstance().currentUser?.uid
 
-                firestore.collection("Products").document(productId)
-                    .update("wishlist", isChecked)
-                    .addOnSuccessListener {
+                if (userId != null && productId != null) {
+                    val userWishlistRef = Firebase.firestore.collection("Wishlists").document(userId)
+                    val isChecked = binding.wishlistBtn.isChecked
 
-                        if (previousState != isChecked){
-                            Toast.makeText(this, "Product added to wishlist", Toast.LENGTH_SHORT).show()
-
-                        }else {
-                            // Display toast message when the product is removed from the wishlist
-                            Toast.makeText(this, "Product removed from wishlist", Toast.LENGTH_SHORT).show()
+                    userWishlistRef.get()
+                        .addOnSuccessListener { _ ->
+                            // If the button is checked, add the product to the wishlist
+                            if (isChecked) {
+                                // Set the product ID to true in the user's wishlist
+                                userWishlistRef.set(
+                                    mapOf(productId to true),
+                                    SetOptions.merge()
+                                ).addOnSuccessListener {
+                                    Toast.makeText(this, "Added to Wishlist", Toast.LENGTH_SHORT).show()
+                                }.addOnFailureListener { exception ->
+                                    Toast.makeText(
+                                        this,
+                                        "Failed to add to Wishlist: ${exception.message}",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                    binding.wishlistBtn.isChecked = false // Revert state if failure
+                                }
+                            } else {
+                                // Remove the product ID from the user's wishlist
+                                userWishlistRef.update(productId, FieldValue.delete())
+                                    .addOnSuccessListener {
+                                        Toast.makeText(
+                                            this,
+                                            "Removed from Wishlist",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    }.addOnFailureListener { exception ->
+                                        Toast.makeText(
+                                            this,
+                                            "Failed to remove from Wishlist: ${exception.message}",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                        binding.wishlistBtn.isChecked = true // Revert state if failure
+                                    }
+                            }
                         }
-
-                    }.addOnFailureListener { exception ->
-                        // Handle failure
-                        Toast.makeText(this, "Failed to update wishlist status: ${exception.message}", Toast.LENGTH_SHORT).show()
-
-                        binding.wishlistBtn.isChecked = !isChecked
-                    }
-            }
+                }
         }
+
+
 
         binding.followBtn.setOnClickListener {
             Toast.makeText(this, "Not yet Implemented", Toast.LENGTH_SHORT).show()
@@ -161,21 +196,89 @@ class DetailActivity : AppCompatActivity() {
 
     private fun checkWishlistStatus() {
 
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
         val productId = intent.getStringExtra("PRODUCT_ID")
 
-        productId?.let { id ->
-            Firebase.firestore.collection("Products").document(id)
-                .get()
+        if (userId != null && productId != null) {
+            val userWishlistRef = Firebase.firestore.collection("Wishlists").document(userId)
+
+            userWishlistRef.get()
                 .addOnSuccessListener { documentSnapshot ->
-                    val product = documentSnapshot.toObject<ProductModel>()
-                    product?.let {
-                        binding.wishlistBtn.isChecked = it.wishlist!!
+                    if (documentSnapshot.exists()) {
+
+                        val isWishlisted = documentSnapshot.getBoolean(productId) == true
+
+                        binding.wishlistBtn.isChecked = isWishlisted
+                    } else {
+
+                        binding.wishlistBtn.isChecked = false
                     }
                 }
                 .addOnFailureListener { exception ->
-                    // Handle failure
-                    Toast.makeText(this, "Failed to fetch product details: ${exception.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Failed to fetch wishlist status: ${exception.message}", Toast.LENGTH_SHORT).show()
                 }
         }
     }
+
+
+    //Ar checking availability
+
+    private fun checkArAvailability() {
+        lifecycleScope.launch {
+            // Show loading indicator
+            val result = withContext(Dispatchers.IO) {
+                ArCoreApk.getInstance().checkAvailability(this@DetailActivity)
+            }
+
+            when (result) {
+                ArCoreApk.Availability.SUPPORTED_INSTALLED -> {
+                    startActivity(Intent(this@DetailActivity, ArViewActivity::class.java))
+                }
+                ArCoreApk.Availability.SUPPORTED_NOT_INSTALLED -> {
+                    showAlertDialog("Please install ARCore.", true)
+                }
+                ArCoreApk.Availability.UNKNOWN_ERROR -> {
+
+                    Toast.makeText(applicationContext, "Error checking AR availability.", Toast.LENGTH_SHORT).show()
+                    Log.d("pratik11", "checkArAvailability: $result")
+                }
+                ArCoreApk.Availability.UNSUPPORTED_DEVICE_NOT_CAPABLE -> {
+                    Log.e("ArViewActivity", "AR not supported on this device.")
+                    showAlertDialog("AR not supported on this device.")
+                }
+                ArCoreApk.Availability.UNKNOWN_TIMED_OUT -> {
+                    Log.e("ArViewActivity", "AR availability check timed out.")
+                    Toast.makeText(applicationContext, "AR availability check timed out.", Toast.LENGTH_SHORT).show()
+                    finish()
+                }
+                ArCoreApk.Availability.SUPPORTED_APK_TOO_OLD -> {
+                    Log.e("ArViewActivity", "ARCore APK is too old.")
+                    showAlertDialog("ARCore APK is too old. Please update ARCore.")
+                }
+
+                ArCoreApk.Availability.UNKNOWN_CHECKING -> {
+                    checkArAvailability()
+                }
+            }
+        }
+    }
+
+
+    private fun showAlertDialog(message: String, shouldRedirect: Boolean = false) {
+        AlertDialog.Builder(this)
+            .setTitle("AR Availability Issue")
+            .setMessage(message)
+            .setPositiveButton("OK") { dialog, _ ->
+                dialog.dismiss()
+                if (shouldRedirect) {
+                    // Redirect to Play Store or handle accordingly
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.google.ar.core"))
+                    startActivity(intent)
+                }
+                dialog.dismiss()
+            }
+            .setCancelable(false)
+            .show()
+    }
+
 }

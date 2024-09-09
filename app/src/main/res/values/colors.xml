@@ -4,6 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="shimmer_color">#c7c7c7</color>
     <color name="theme_color">#F68B8B</color>
+    <color name="GreyText_color">#696969</color>
 
     <!-- Custom style for TextInputLayout -->
     <style name="CustomTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">

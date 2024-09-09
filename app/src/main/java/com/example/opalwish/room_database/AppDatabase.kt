@@ -6,6 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(entities = [RoomProductModel::class], version = 4, exportSchema = false)
+
 abstract class AppDatabase: RoomDatabase() {
 
     abstract fun RoomDao(): RoomDao
@@ -30,5 +31,4 @@ abstract class AppDatabase: RoomDatabase() {
             return database!!
         }
     }
-
 }

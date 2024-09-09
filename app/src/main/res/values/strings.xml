@@ -7,5 +7,7 @@
     <string name="title_notifications">Notifications</string>
     <string name="popup_string">Congratulations, you have\ncompleted your registration!</string>
     <!-- TODO: Remove or change this placeholder text -->
+
+    <string name="total_amount">₹ %1$.1f</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

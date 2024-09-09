@@ -7,11 +7,53 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragment.CartFragment">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/address_section"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_80sdp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/delivery_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Deliver to: "
+            android:layout_marginStart="@dimen/_12sdp"
+            app:layout_constraintBottom_toTopOf="@id/delivery_address"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/delivery_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:text="N-133, bandra east, Mumbai"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/delivery_name" />
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/_12sdp"
+            android:text="Change"
+            app:layout_constraintBottom_toBottomOf="@id/delivery_address"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/delivery_name" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cart_rv"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/address_section"
         tools:listitem="@layout/rv_cart_item"
         tools:itemCount="30"
         app:layout_constraintBottom_toTopOf="@id/bottom_constraint"/>
@@ -80,7 +122,7 @@
             android:background="@drawable/square_btn_bg"
             android:layout_marginEnd="@dimen/_4sdp"
             android:layout_marginStart="@dimen/_4sdp"
-            android:text="Continue for Payments"
+            android:text="Continue to Checkout"
             android:textColor="@color/black"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,8 +9,6 @@ import org.jetbrains.annotations.NotNull
 data class RoomProductModel(
 
     @PrimaryKey
-    @NotNull
-
     var product_id : String = "",
 
     @ColumnInfo(name = "productName")

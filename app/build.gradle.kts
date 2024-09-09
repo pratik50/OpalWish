@@ -100,6 +100,9 @@ dependencies {
     implementation (libs.androidx.room.ktx)
     kapt (libs.androidx.room.compiler)
 
+    //Ar SceneView
+    implementation ("io.github.sceneview:arsceneview:0.10.0")
+
 
 }
 // Allow references to generated code

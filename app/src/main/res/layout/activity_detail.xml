@@ -54,7 +54,19 @@
             app:layout_constraintBottom_toBottomOf="@+id/product_image"
             app:layout_constraintStart_toStartOf="@+id/product_image"
             app:layout_constraintTop_toTopOf="@+id/product_image"
-            app:layout_constraintVertical_bias="0.93" />
+            app:layout_constraintVertical_bias="1.01" />
+
+        <ImageView
+            android:id="@+id/ar_button"
+            android:layout_width="@dimen/_34sdp"
+            android:layout_height="@dimen/_34sdp"
+            android:src="@drawable/ar"
+            app:layout_constraintBottom_toBottomOf="@id/ratingBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/_8sdp"
+            app:layout_constraintHorizontal_bias="0.885"
+            app:layout_constraintTop_toTopOf="@id/ratingBar"
+            app:layout_constraintStart_toEndOf="@id/ratingBar" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -81,6 +93,7 @@
             android:id="@+id/wishlist_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_2sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:useMaterialThemeColors = "false"
