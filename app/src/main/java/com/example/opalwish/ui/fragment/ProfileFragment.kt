@@ -28,7 +28,7 @@ class ProfileFragment : Fragment() {
 
         val toolbar = binding.toolbar
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
-        val sharedPreferences = requireContext().getSharedPreferences("com.example.oplawish.usersDetail", Context.MODE_PRIVATE)
+        val sharedPreferences = requireContext().getSharedPreferences("com.example.opalwish.usersDetail", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         binding.rbMale.setOnClickListener {
 
@@ -55,7 +55,7 @@ class ProfileFragment : Fragment() {
 
             editor.apply()
         }
-        val sharedPref = requireContext().getSharedPreferences("com.example.oplawish.usersDetail", Context.MODE_PRIVATE)
+        val sharedPref = requireContext().getSharedPreferences("com.example.opalwish.usersDetail", Context.MODE_PRIVATE)
         val usrName = sharedPref.getString("userFirstName", "")
         val usrLastName = sharedPref.getString("userLastName", "")
         val usrEmail = sharedPref.getString("userEmail", "")
@@ -73,9 +73,39 @@ class ProfileFragment : Fragment() {
         binding.rbFemale.setChecked(femaleGender)
         binding.rbOther.setChecked(otherGender)
 
+        setFieldsEditable(false)
+
+        // Edit Profile button click listener
+        binding.editProfileBtn.setOnClickListener {
+            setFieldsEditable(true)
+            Toast.makeText(this.context, "Fields are now editable", Toast.LENGTH_SHORT).show()
+        }
+
         return binding.root
     }
 
+    // Helper function to make the fields editable/non-editable
+    private fun setFieldsEditable(isEditable: Boolean) {
+        // Name field
+        binding.etName.isFocusable = isEditable
+        binding.etName.isFocusableInTouchMode = isEditable
+        binding.etName.isClickable = isEditable
+
+        // Email field
+        binding.etEmail.isFocusable = isEditable
+        binding.etEmail.isFocusableInTouchMode = isEditable
+        binding.etEmail.isClickable = isEditable
+
+        // Mobile number field
+        binding.etMobile.isFocusable = isEditable
+        binding.etMobile.isFocusableInTouchMode = isEditable
+        binding.etMobile.isClickable = isEditable
+
+        // Address field
+        binding.etLocation.isFocusable = isEditable
+        binding.etLocation.isFocusableInTouchMode = isEditable
+        binding.etLocation.isClickable = isEditable
+    }
 
 
 }

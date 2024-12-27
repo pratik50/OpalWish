@@ -6,4 +6,21 @@
     </style>
 
     <style name="Theme.OpalWish" parent="Base.Theme.OpalWish" />
+
+
+
+    <!-- res/values/styles.xml -->
+    <style name="BottomSheetStyle." parent="Theme.Design.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/Modal</item>
+    </style>
+
+    <style name="Modal" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/dialog_sheet</item>
+    </style>
+
+    <style name="TextInputErrorStyle" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">#ff0000</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
 </resources>

@@ -91,7 +91,6 @@
                 android:layout_height="wrap_content"
                 android:hint="Name"
                 android:textColor="@color/GreyText_color"
-                android:focusable="false"
                 android:inputType="textPersonName"
                 android:padding="16dp"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -112,7 +111,6 @@
                 android:layout_height="wrap_content"
                 android:hint="Email-id"
                 android:textColor="@color/GreyText_color"
-                android:focusable="false"
                 android:inputType="textEmailAddress"
                 android:padding="16dp"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -153,7 +151,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Location"
-                android:focusable="false"
                 android:textColor="@color/GreyText_color"
                 android:inputType="textPostalAddress"
                 android:padding="16dp"/>

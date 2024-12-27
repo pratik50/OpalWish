@@ -17,7 +17,7 @@ class ArViewActivity : AppCompatActivity() {
     private lateinit var binding: ActivityArViewBinding
     private lateinit var modelNode: ArModelNode
 
-
+                                                                                        
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -36,7 +36,6 @@ class ArViewActivity : AppCompatActivity() {
         }
 
         modelNode = ArModelNode(binding.sceneView.engine, PlacementMode.BEST_AVAILABLE).apply {
-            Log.d("maithili", "onCreate: loading the model")
             loadModelGlbAsync(
                 glbFileLocation = "models/new.glb",
             )
@@ -47,7 +46,6 @@ class ArViewActivity : AppCompatActivity() {
             onAnchorChanged = {
                 binding.placeButton.isGone
             }
-            Log.d("maithili", "onCreate: loaded the model")
         }
         binding.sceneView.addChild(modelNode)
     }

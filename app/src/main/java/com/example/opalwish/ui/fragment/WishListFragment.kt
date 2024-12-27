@@ -86,8 +86,11 @@ class WishListFragment : Fragment() {
                             }
 
                             adapter.notifyDataSetChanged()
-                        } else {
-                            Toast.makeText(requireContext(), "No items in wishlist", Toast.LENGTH_SHORT).show()
+
+                            if(productList.isEmpty()) {
+                                binding.emptyWishlistText.visibility = View.VISIBLE
+                                Log.d("EmptyList", "fetchWishlistProducts: inside emplty product list")
+                            }
                         }
                     } catch (exception: Exception) {
                         Log.e("Error", "Failed to fetch the products: ${exception.message}", exception)

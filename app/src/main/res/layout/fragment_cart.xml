@@ -19,7 +19,8 @@
             android:id="@+id/delivery_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Deliver to: "
+            android:text="Deliver To: "
+            android:textStyle="bold"
             android:layout_marginStart="@dimen/_12sdp"
             app:layout_constraintBottom_toTopOf="@id/delivery_address"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -28,15 +29,20 @@
 
         <TextView
             android:id="@+id/delivery_address"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_12sdp"
-            android:text="N-133, bandra east, Mumbai"
+            android:text="Add the address to continue.. !!"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:layout_marginEnd="@dimen/_5sdp"
+            app:layout_constraintRight_toLeftOf="@id/change_address"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/delivery_name" />
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/change_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/_12sdp"
@@ -44,7 +50,6 @@
             app:layout_constraintBottom_toBottomOf="@id/delivery_address"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@id/delivery_name" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
