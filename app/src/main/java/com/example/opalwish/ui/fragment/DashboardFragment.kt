@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity.MODE_PRIVATE
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
@@ -21,10 +23,16 @@ import com.example.opalwish.adapters.ProductAdapter
 import com.example.opalwish.data.ProductModel
 import com.example.opalwish.databinding.FragmentDashboardBinding
 import com.example.opalwish.ui.activity.ProductCategoryActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 import kotlin.math.abs
+import kotlin.math.log
 
 class DashboardFragment : Fragment() {
 
@@ -48,8 +56,8 @@ class DashboardFragment : Fragment() {
         if(preferences.getBoolean("isCart",false))
             findNavController().navigate(R.id.action_dashboardFragment_to_cartFragment)
 
-
         searchItem()
+
 
         return binding.root
     }

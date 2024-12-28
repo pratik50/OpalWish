@@ -55,7 +55,9 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp"
+        android:scrollbars="none"
+        android:paddingStart="@dimen/_16sdp"
+        android:paddingEnd="@dimen/_16sdp"
         android:isScrollContainer="false" >
 
     <LinearLayout
@@ -194,6 +196,21 @@
                 android:layout_height="wrap_content"
                 android:text="Other"/>
         </RadioGroup>
+
+        <com.github.leandroborgesferreira.loadingbutton.customViews.CircularProgressButton
+            android:id="@+id/btn_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save"
+            android:background="@drawable/animation_btn_bg"
+            android:stateListAnimator="@null"
+            app:finalCornerAngle="@dimen/_120sdp"
+            app:initialCornerAngle="@dimen/_120sdp"
+            app:spinning_bar_padding="@dimen/_5sdp"
+            app:spinning_bar_color="@color/white"
+            android:layout_margin="@dimen/_30sdp"
+            android:textColor="@color/white"
+            android:layout_gravity="center"/>
 
     </LinearLayout>
     </ScrollView>

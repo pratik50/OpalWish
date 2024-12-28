@@ -137,7 +137,7 @@ class SignUpActivity : AppCompatActivity() {
     ) {
 
         val sharedPref =
-            getSharedPreferences("com.example.oplawish.usersDetail", Context.MODE_PRIVATE)
+            getSharedPreferences("com.example.opalwish.usersDetail", Context.MODE_PRIVATE)
         val editor = sharedPref.edit()
 
         editor.putString("userFirstName", firstName)

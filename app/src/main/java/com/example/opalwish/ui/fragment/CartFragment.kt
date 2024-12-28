@@ -1,6 +1,7 @@
 package com.example.opalwish.ui.fragment
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -94,6 +95,11 @@ class CartFragment : Fragment() {
                             // Set the address data under the user's UID
                             userRef.updateChildren(addressData)
                                 .addOnSuccessListener {
+                                    val sharedPreferences = requireContext().getSharedPreferences("com.example.opalwish.usersDetail", Context.MODE_PRIVATE)
+                                    val editor = sharedPreferences.edit()
+                                    editor.putString("userAddress", addressEditText?.text.toString())
+                                    editor.apply()
+
                                     Log.d("AddressUpdate", "Address added successfully")
                                 }
                                 .addOnFailureListener { e ->
@@ -203,6 +209,10 @@ class CartFragment : Fragment() {
                     val address = Firebase.database.reference.child("Users").child(userID).child("address").child("address").get().await()
                     if (address.exists()){
                         binding.deliveryAddress.text = address.value.toString()
+                        val sharedPreferences = requireContext().getSharedPreferences("com.example.opalwish.usersDetail", Context.MODE_PRIVATE)
+                        val editor = sharedPreferences.edit()
+                        editor.putString("userAddress", address.value.toString())
+                        editor.apply()
                         binding.changeAddress.text = "Change"
                     }else{
                         binding.changeAddress.text = "Add Address"
@@ -236,7 +246,6 @@ class CartFragment : Fragment() {
                 }
             }
         }
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
