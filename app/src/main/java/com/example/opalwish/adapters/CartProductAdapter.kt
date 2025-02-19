@@ -19,7 +19,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlin.math.log
 
-class CartProductAdapter(var context: Context, private val cartItemList: List<RoomProductModel>) :
+class CartProductAdapter(var context: Context, private val cartItemList: MutableList<RoomProductModel>) :
     RecyclerView.Adapter<CartProductAdapter.CartItemViewHolder>() {
 
 
@@ -47,7 +47,7 @@ class CartProductAdapter(var context: Context, private val cartItemList: List<Ro
                 dao.updateProduct(cartItemList[position])
             }
         }
-
+        
 
         holder.binding.clearProduct.setOnClickListener{
             GlobalScope.launch(Dispatchers.IO) {

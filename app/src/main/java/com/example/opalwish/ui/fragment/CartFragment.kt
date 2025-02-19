@@ -23,7 +23,7 @@ import com.example.opalwish.databinding.FragmentCartBinding
 import com.example.opalwish.network.RetrofitInstance
 import com.example.opalwish.room_database.AppDatabase
 import com.example.opalwish.room_database.RoomProductModel
-import com.example.opalwish.ui.activity.CheckoutActivity
+import com.example.opalwish.ui.activity.PlaceOrderActivity
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.Firebase
@@ -31,9 +31,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.database
-import com.google.firebase.firestore.FieldValue
-import com.google.firebase.firestore.SetOptions
-import com.google.firebase.firestore.firestore
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
@@ -43,6 +40,7 @@ class CartFragment : Fragment() {
 
     private lateinit var binding: FragmentCartBinding
     private lateinit var adapter: CartProductAdapter
+    private var totalPrice: Double = 0.0 // Global variable for total price
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreateView(
@@ -51,7 +49,7 @@ class CartFragment : Fragment() {
     ): View {
         binding = FragmentCartBinding.inflate(inflater, container, false)
 
-        adapter = CartProductAdapter(requireContext(), emptyList())
+        adapter = CartProductAdapter(requireContext(), mutableListOf())
         binding.cartRv.adapter = adapter
 
         binding.checkoutBtn.isEnabled = false
@@ -130,7 +128,6 @@ class CartFragment : Fragment() {
 
         val doa = AppDatabase.getInstance(requireContext()).RoomDao()
 
-
         doa.getAllProduct().observe(requireActivity()){
 
             if (it.isEmpty()){
@@ -143,8 +140,33 @@ class CartFragment : Fragment() {
 
         }
 
+
         binding.checkoutBtn.setOnClickListener {
-            startActivity(Intent(requireContext(), CheckoutActivity::class.java))
+            val dao = AppDatabase.getInstance(requireContext()).RoomDao()
+
+            // Fetch products from the database ONCE when the button is clicked
+            lifecycleScope.launch(Dispatchers.IO) {
+                val cartItems = dao.getAllProductOnce()
+                val selectedProducts = cartItems.filter { it.isSelected }
+
+                withContext(Dispatchers.Main) {
+                    if (selectedProducts.isNotEmpty()) {
+                        val intent = Intent(requireContext(), PlaceOrderActivity::class.java)
+                        intent.putExtra("totalPrice", totalPrice)
+                        intent.putParcelableArrayListExtra(
+                            "SELECTED_PRODUCTS",
+                            ArrayList(selectedProducts)
+                        )
+                        startActivity(intent)
+                    } else {
+                        Toast.makeText(
+                            requireContext(),
+                            "Please select at least one product to proceed!",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            }
         }
 
         return binding.root
@@ -224,8 +246,8 @@ class CartFragment : Fragment() {
         }
     }
 
-    private fun calculateTotalPrice(cartItemList: List<RoomProductModel>)  {
-        var totalPrice = 0.0
+    private fun calculateTotalPrice(cartItemList: List<RoomProductModel>) {
+       totalPrice = 0.0
         lifecycleScope.launch(Dispatchers.IO) {
             for (item in cartItemList) {
                 if (item.isSelected) {
@@ -262,9 +284,3 @@ class CartFragment : Fragment() {
         }
     }
 }
-
-
-
-
-
-

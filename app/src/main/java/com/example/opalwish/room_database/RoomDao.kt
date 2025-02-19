@@ -2,7 +2,6 @@ package com.example.opalwish.room_database
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
@@ -17,10 +16,13 @@ interface RoomDao  {
     suspend fun deleteProduct(id: String)
 
     @Query("SELECT * FROM cartproduct")
-    fun getAllProduct(): LiveData<List<RoomProductModel>>
+    fun getAllProduct(): LiveData<MutableList<RoomProductModel>>
 
     @Query("SELECT * FROM cartproduct WHERE product_id = :id")
     fun isExit(id: String): RoomProductModel
+
+    @Query("SELECT * FROM cartproduct")
+    suspend fun getAllProductOnce(): List<RoomProductModel>
 
     @Update
     suspend fun updateProduct(product: RoomProductModel)

@@ -1,10 +1,12 @@
 package com.example.opalwish.room_database
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import org.jetbrains.annotations.NotNull
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 @Entity(tableName = "CartProduct")
 data class RoomProductModel(
 
@@ -26,4 +28,4 @@ data class RoomProductModel(
     @ColumnInfo(name = "isSelected")
     var isSelected: Boolean = false,
 
-)
+): Parcelable

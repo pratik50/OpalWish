@@ -41,7 +41,7 @@
         android:layout_width="@dimen/_258sdp"
         android:layout_height="@dimen/_47sdp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="-50dp"
+        android:layout_marginTop="-60dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="@dimen/_50sdp"
         android:text="Get Started"

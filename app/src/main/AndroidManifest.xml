@@ -3,20 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.opalwish">
 
-
     <uses-permission android:name="android.permission.CAMERA" />
+
     <uses-feature android:name="android.hardware.camera.ar" />
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
     <uses-feature android:name="android.hardware.location.gps" />
+
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
-
-
     <application
-
         android:allowBackup="false"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -26,6 +25,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OpalWish"
         tools:targetApi="31">
+
+        <activity
+            android:name=".rv_placeOrder_item"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activity.PlaceOrderActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.activity.ArViewActivity"
             android:exported="false" />
@@ -67,6 +73,10 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+        <meta-data
+            android:name="com.razorpay.ApiKey"
+            android:value="rzp_test_ld3btyiWMEO1Nu" />
+
     </application>
 
 </manifest>

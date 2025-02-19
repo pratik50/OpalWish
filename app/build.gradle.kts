@@ -66,6 +66,10 @@ dependencies {
     implementation (libs.ssp.android)
     implementation(libs.coil)
 
+    //Razorpay Gateway
+    implementation ("com.razorpay:checkout:1.6.40")
+
+
     //viewpager2 indicator
     implementation (libs.circleindicator)
 
@@ -104,9 +108,10 @@ dependencies {
     implementation ("io.github.sceneview:arsceneview:0.10.0")
 
     implementation("com.google.android.gms:play-services-maps:18.2.0")
-
+    implementation ("com.google.android.gms:play-services-base:18.2.0")
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
 }
 // Allow references to generated code
 kapt {
