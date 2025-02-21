@@ -67,10 +67,8 @@ class ProfileFragment : Fragment() {
             editor.apply()
         }
 
-        Log.d("qwer", "onCreateView: outside of the lifecycleScope")
         lifecycleScope.launch(Dispatchers.IO) {
 
-            Log.d("inside", "onCreateView: inside lifecycle scope")
             try {
                 Log.d("try", "onCreateView: insde try block")
                 val userId = FirebaseAuth.getInstance().currentUser?.uid
@@ -148,8 +146,6 @@ class ProfileFragment : Fragment() {
                 "mobile" to mobile.toString(),
                 "password" to usrPass.toString()
             )
-
-
                 if (userId != null){
 
                     val userRef = FirebaseDatabase.getInstance().getReference("Users").child(userId)

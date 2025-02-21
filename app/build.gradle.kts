@@ -104,6 +104,10 @@ dependencies {
     implementation (libs.androidx.room.ktx)
     kapt (libs.androidx.room.compiler)
 
+    //lottie Animation
+    implementation ("com.airbnb.android:lottie:6.1.0")
+
+
     //Ar SceneView
     implementation ("io.github.sceneview:arsceneview:0.10.0")
 

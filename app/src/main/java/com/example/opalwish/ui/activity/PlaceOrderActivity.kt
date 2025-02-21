@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.widget.Toast
 import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
@@ -33,7 +34,6 @@ class PlaceOrderActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = "CheckOut"
 
-
         // Initialize RecyclerView
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         adapter = PlaceOrderAdapter(this, cartItems)
@@ -55,9 +55,6 @@ class PlaceOrderActivity : AppCompatActivity() {
             adapter.updatePlaceOrderItems(selectedProducts)
         }
 
-
-
-
         // Checkout Button
         binding.checkoutButton.setOnClickListener {
             // Proceed to the next step (CheckoutActivity)
@@ -72,6 +69,17 @@ class PlaceOrderActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "No items to checkout!", Toast.LENGTH_SHORT).show()
             }
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                // Handle the back navigation
+                onBackPressed() // or finish() if you want to close the activity
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 }

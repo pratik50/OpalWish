@@ -41,6 +41,7 @@ class CartFragment : Fragment() {
     private lateinit var binding: FragmentCartBinding
     private lateinit var adapter: CartProductAdapter
     private var totalPrice: Double = 0.0 // Global variable for total price
+    var isAddressAdded = false;
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreateView(
@@ -53,6 +54,7 @@ class CartFragment : Fragment() {
         binding.cartRv.adapter = adapter
 
         binding.checkoutBtn.isEnabled = false
+
 
         val preferences = requireContext().getSharedPreferences("info", AppCompatActivity.MODE_PRIVATE)
         val editor = preferences.edit()
@@ -81,7 +83,6 @@ class CartFragment : Fragment() {
                         pinCodeEditText?.error = "Pincode is required"
                     } else {
                         // Proceed with form submission
-
                         val addressData = mapOf(
                             "address" to addressEditText?.text.toString(),
                             "pincode" to pinCodeEditText?.text.toString(),
@@ -98,9 +99,11 @@ class CartFragment : Fragment() {
                                     editor.putString("userAddress", addressEditText?.text.toString())
                                     editor.apply()
 
+                                    isAddressAdded = true
                                     Log.d("AddressUpdate", "Address added successfully")
                                 }
                                 .addOnFailureListener { e ->
+                                    isAddressAdded = false
                                     Log.e("AddressUpdate", "Error adding address", e)
                                 }
                                 // Optionally, fetch the updated address (if needed)
@@ -143,7 +146,6 @@ class CartFragment : Fragment() {
 
         binding.checkoutBtn.setOnClickListener {
             val dao = AppDatabase.getInstance(requireContext()).RoomDao()
-
             // Fetch products from the database ONCE when the button is clicked
             lifecycleScope.launch(Dispatchers.IO) {
                 val cartItems = dao.getAllProductOnce()
@@ -151,13 +153,21 @@ class CartFragment : Fragment() {
 
                 withContext(Dispatchers.Main) {
                     if (selectedProducts.isNotEmpty()) {
-                        val intent = Intent(requireContext(), PlaceOrderActivity::class.java)
-                        intent.putExtra("totalPrice", totalPrice)
-                        intent.putParcelableArrayListExtra(
-                            "SELECTED_PRODUCTS",
-                            ArrayList(selectedProducts)
-                        )
-                        startActivity(intent)
+                        if (isAddressAdded) {
+                            val intent = Intent(requireContext(), PlaceOrderActivity::class.java)
+                            intent.putExtra("totalPrice", totalPrice)
+                            intent.putParcelableArrayListExtra(
+                                "SELECTED_PRODUCTS",
+                                ArrayList(selectedProducts)
+                            )
+                            startActivity(intent)
+                        }else{
+                            Toast.makeText(
+                                requireContext(),
+                                "Please add address to proceed!",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
                     } else {
                         Toast.makeText(
                             requireContext(),
@@ -235,8 +245,12 @@ class CartFragment : Fragment() {
                         val editor = sharedPreferences.edit()
                         editor.putString("userAddress", address.value.toString())
                         editor.apply()
+
+                        isAddressAdded = true
+
                         binding.changeAddress.text = "Change"
                     }else{
+                        isAddressAdded = false
                         binding.changeAddress.text = "Add Address"
                     }
                 }catch (e: Exception){
